@@ -50,7 +50,7 @@ const Body2 = ()=>{
 
     return(
         
-    <div className="center">
+    <div className="center" style={{"padding":"0px"}}>
       
         
  <div className='formshadow'>    

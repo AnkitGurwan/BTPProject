@@ -17,6 +17,7 @@ import Readmoreproject2 from './pages/readmorepage';
 import Updateproject from './pages/updateprojectpage';
 import Studentallproject from './pages/studentallprojectpage'
 import Studentspecificproject from './pages/studentspecificprojectpage'
+import Newpage from './pages/newpage'
 import ItemState from '../context/project/ItemState';
 
 function App(){
@@ -41,6 +42,7 @@ function App(){
                 <Route path='/mainpage/:id' element={<Readmoreproject1/>}/>
                 <Route path='/owner/:id' element={<Readmoreproject2/>}/>
                 <Route path='/owner/update/:id' element={<Updateproject/>}/>
+                <Route path='/newpage' element={<Newpage/>}/>
             </Routes>
             </BrowserRouter>
             </ItemState>

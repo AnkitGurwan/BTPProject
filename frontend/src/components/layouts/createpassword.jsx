@@ -1,6 +1,8 @@
 import React,{useState, useContext} from 'react';
 import './stylescopy.css'
 import { useNavigate, useParams,Link } from 'react-router-dom';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import AuthContext from '../../context/authentication/AuthContext';
 
 const Createpassword=()=>{
@@ -29,7 +31,11 @@ const Createpassword=()=>{
     const submit=(e)=>{
         e.preventDefault();
         confirmEmail(user.password,token);
-        navigate('/mainpage')
+        navigate('/mainpage');
+
+        toast.success('Password created successfully', {
+            position: toast.POSITION.TOP_CENTER
+        });
     
     }
 

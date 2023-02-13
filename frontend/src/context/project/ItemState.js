@@ -24,10 +24,11 @@ const ItemState=(props)=>{
         
         const json=await response.json()
         json.reverse();
-        json.map((value)=>value.title=_(value.title).capitalize())
-        json.map((value)=>value.co_supervisor=_(value.co_supervisor).capitalize())
-        json.map((value)=>value.brief_abstract=_(value.brief_abstract).capitalize())
-        json.map((value)=>value.specialization=_(value.specialization).capitalize())
+        
+        json.map((value)=>{if(value)value.title=_(value.title).capitalize()})
+        json.map((value)=>{if(value)value.co_supervisor=_(value.co_supervisor).capitalize()})
+        json.map((value)=>{if(value)value.brief_abstract=_(value.brief_abstract).capitalize()})
+        json.map((value)=>{if(value)value.specialization=_(value.specialization).capitalize()})
         
         setItems(json)
         // console.log("useritem:- ",json)
@@ -43,13 +44,13 @@ const ItemState=(props)=>{
             }
         })
 
-        console.log(response.status);
+        
         const json=await (response.json())
-        console.log(json)
-        json.map((value)=>value.title=_(value.title).capitalize())
-        json.map((value)=>value.co_supervisor=_(value.co_supervisor).capitalize())
-        json.map((value)=>value.brief_abstract=_(value.brief_abstract).capitalize())
-        json.map((value)=>value.specialization=_(value.specialization).capitalize())
+        
+        json.map((value)=>{if(value)value.title=_(value.title).capitalize()})
+        json.map((value)=>{if(value)value.co_supervisor=_(value.co_supervisor).capitalize()})
+        json.map((value)=>{if(value)value.brief_abstract=_(value.brief_abstract).capitalize()})
+        json.map((value)=>{if(value)value.specialization=_(value.specialization).capitalize()})
         
        
         json.reverse();
@@ -69,7 +70,7 @@ const ItemState=(props)=>{
             });
             
             const json = await response.json();
-            console.log(response.status);
+            
             return response.status;
             // setUser(user.concat(json));
         }
@@ -85,7 +86,7 @@ const ItemState=(props)=>{
             });
             
             const json = await response.json();
-            console.log(json);
+          
             // setUser(user.concat(json));
         }
         const deleteProject=async(id)=>{
@@ -98,30 +99,29 @@ const ItemState=(props)=>{
             })
             return response.status;
         }
-        const selectproject=async(id,email)=>{
+        const selectproject=async(id,user,email)=>{
            
-            const response = await fetch(`${url}/project/projectaddition/${id}/${email}`,  {
+            const response = await fetch(`${url}/project/projectaddition/${id}/${user}/${email}`,  {
                 method: 'GET',
                 headers: {
-                    'Content-Type': "application/json",
-                    'auth-token':localStorage.getItem('token')
+                    'Content-Type': "application/json"
                 }
             })
-            return response.status;
+            return response.status
         }
-        const deselectproject=async(id)=>{
+
+        const deselectproject=async(id,user)=>{
            
-            const response = await fetch(`${url}/project/deselectproject/${id}`,  {
+            const response = await fetch(`${url}/project/deselectproject/${id}/${user}`,  {
                 method: 'GET',
                 headers: {
-                    'Content-Type': "application/json",
-                    'auth-token':localStorage.getItem('token')
+                    'Content-Type': "application/json"
                 }
             })
             return response.status;
         }
         const ownerdetails=async(id)=>{
-            console.log(id)
+            
               
                 const response = await fetch(`${url}/project/ownerdetails/${id}`, {
                     method: 'GET',
@@ -131,12 +131,10 @@ const ItemState=(props)=>{
                     }
                 })
         
-                console.log(response.status);
-                
+               
                 
                 const json=await response.json()
                 setDetails(json)
-                console.log(json)
                 
                 // console.log("useritem:- ",json)
                  }

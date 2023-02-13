@@ -1,5 +1,3 @@
-
-
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -11,7 +9,7 @@ const projectSchema = new mongoose.Schema({
     co_supervisor:{type:String},
     specialization:{type:String,required:true},
     ownerDetails:{type:mongoose.Schema.Types.ObjectId, default:"000000000000000000000000"},
-    intrestedPeople:[{type:mongoose.Schema.Types.ObjectId,default:[]}],
+    intrestedPeople:[{type:String,default:[]}],
     creation_date:{type:String,required:true},
     creation_time:{type:String,required:true},
     updation_date:{type:String,required:false},

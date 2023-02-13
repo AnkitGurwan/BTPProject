@@ -121,7 +121,7 @@ text-decoration: none;
 
 .bodymaindiv{
     display: flex;
-    
+   
     justify-content: center;
     align-items: center;
     height: 70vh;
@@ -207,6 +207,11 @@ text-decoration: none;
 
 
 /*body2*/
+/* .body2div{
+    height: 77vh;
+    background-image: url(https://www.iitg.ac.in/acad/slider_images/2.jpg);
+    background-size: 100% 100%;
+} */
 
 .centerfull{
     width: 400px;
@@ -386,32 +391,34 @@ text-decoration: none;
     border-bottom: 2px black;
 }
 
-.cardlabel{
-    padding:8px 0 8px 100px;
+.cardlabell{
+    padding:10px 10px 10px 10px;
     display: flex;
     flex-direction: row;
-    align-items: center;
+    justify-content: space-between;
 }
 
 .carddiv{
     display: flex;
     flex-direction: row;
     align-items: center;
-    width: 15vw;
     font-size: large;
+    margin-right: 40px;
+    
 }
 
 .cardinput{
     padding:10px 0 10px 0;
     display: flex;
     flex-direction: row;
+    border-radius: 3px;
 }
 
-.cardbutton{
-    padding:0;
-    margin: auto;
-    width: 12vw;
-    height: 8vh;
+.cardbuttonn{
+    padding:0 0 0 0;
+    margin: 20px auto;
+    width: 10vw;
+    height: 7vh;
     color: white;
     background-color: #10A19D;
     border-radius: 4px;
@@ -532,6 +539,17 @@ text-decoration: none;
     padding: auto;
     margin: 10px 60px;
 }
+.allprojectsdivread{
+    margin: 10px 5vw;
+    padding: 20px;
+}
+.allprojectsdiv2{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    padding: auto;
+    margin: 10px 60px;
+}
 
 .cardbody{
     display: flex;
@@ -567,6 +585,15 @@ text-decoration: none;
 }
 .projectcardmaindiv{
     padding: 20px 20px;
+}
+.projectcardmaindiv1{
+    padding: 0px 20px;
+    width: 90vw;
+   
+    top: 15vh;
+}
+.allprojectsdiv{
+    margin-top: 0;
 }
 
 
@@ -703,13 +730,20 @@ text-decoration: none;
 }
 
 
+
 /* studentallproject */
+.studentallprojectdivmain{
+    position: absolute;
+    top: 15vh;
+    width: 100vw;
+}
 .studentallprojectdiv1{
+   
     width: 100%;
     text-align: center;
-    font-size: 40px;
+    font-size: 35px;
     font-weight: 500;
-    padding: 10px 0;
+    padding: 5px 0;
     background-color: #FB2576;
 }
 .studentallprojectdiv2{
@@ -720,6 +754,56 @@ text-decoration: none;
     padding: 10px 0 0 15px;
     color: red;
     text-decoration: none;
+}
+.notregisdiv{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin:2px auto 0 ;
+    padding: 8px 15px;
+    width: 30vw;
+    border-radius: 6px;
+    font-weight: 600;
+
+
+}
+.notregisspan1{
+    font-size: 28px;
+
+}
+.notregisspan2{
+    font-size: 25px;
+    background-color: red;
+    padding: 5px 15px;
+    border-radius: 4px;
+    color: white;
+}
+
+
+/* studentspecific */
+.studentspecificdiv{
+    position: absolute;
+    top: 15vh;
+    width: 100vw;
+    
+
+}
+/* studentspecificprojectcard */
+.zindexdiv{
+    position: fixed;
+    font-size: x-large;
+    font-weight: 600;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background-color: whitesmoke; 
+    top: 16vh;
+    left: 30vw;
+    z-index: 1;
+    padding: 8px 5px;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    
+
 }
 
   /* studentspecificprojectcard Modal Content/Box */
@@ -738,6 +822,19 @@ text-decoration: none;
     justify-content: center;
     align-items: center;
     margin-left: 10px;
+}
+  .projectcardlink222a{
+    background-color:red;
+    color: white;
+    height: 45px;
+    width: 115px;
+    text-decoration: none;
+    font-size: large;
+    border-radius: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 0px;
 }
   .projectcardlink223{
     background-color:orange;
@@ -810,6 +907,16 @@ text-decoration: none;
     position: absolute;
     top:15vh;
     width: 100vw;
+}
+.cardformm{
+    width: 80vw;
+    margin: 0px auto;
+    padding: 2vw;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+
 }
 .readmorepage2{
     position: absolute;
@@ -940,11 +1047,72 @@ text-decoration: none;
   }
 
   .searchdiv{
-    align-items: center;
-    padding: 30px 0px 0 0;
-    margin: auto;
-    width: 260px;
+    padding: 25px 0px;
+    width: 60vw;
     display: flex;
+    align-items: center;
+  }
+  .searchdiv1{
+    padding: 25px 0px;
+   
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+  }
+  .registrationdiv{
+    display: flex;
+    width: 20vw;
+    margin:0 5vw 0  ;
+    align-items: center;
+    font-size: 22px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 500;
+  }
+  .searchdiv2{
+    width: 30vw;
+    padding-left: 10vw;
+  }
+  .checkboxdiv{
+    display: flex;
+    justify-content: start;
+    margin-right:20vw ;
+}
+.checkboxspan{
+
+}
+
+.checkboxinput{
+    margin-right: 34vw;
+    margin-left: 8vw;
+    
+}
+
+
+  .centerdiv{
+    width: 60vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin: auto;
+  }
+  .bsk-container{
+    width: 20vw;
+    height: 20vh;
+  }
+  .bsk-btn{
+    width: 20vw;
+    height: 10vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+  }
+  .x-icon{
+    
+    margin: 4px;
+    
   }
 
 
@@ -999,10 +1167,7 @@ header{
         font-size: larger;
     }
 
-    
-    .center h1{
-        font-size:larger;
-    }
+  
     .signupbutton{
         padding: 5px;
         width: 60%;

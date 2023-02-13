@@ -1,6 +1,8 @@
 import React,{useState, useContext}  from 'react';
 import { useNavigate,Link } from 'react-router-dom';
 import AuthContext from '../../context/authentication/AuthContext';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Resetpassword=()=>{
 
@@ -13,9 +15,21 @@ const Resetpassword=()=>{
     const navigate=useNavigate();
     const submit = async (e)=>{
         e.preventDefault();
-        navigate('/login') ;
-        await resetPassword(em.email);
         
+        const x=await resetPassword(em.email);
+        if(x==200)
+        {
+            navigate('/login') ;
+            toast.success('Email sent successfully', {
+            position: toast.POSITION.TOP_CENTER
+            
+        });
+    }
+    else if(x==400)
+    toast.error('User not exist', {
+        position: toast.POSITION.TOP_CENTER
+        
+    });
     }
 
     return(

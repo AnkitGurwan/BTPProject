@@ -30,19 +30,24 @@ const extract_projects = async (projects_array) => {
 const intrestedPeople = async (arrayOfProjects) => {
     var result = [];
 
+if(arrayOfProjects){
     for (let i = 0; i < arrayOfProjects.length; i++) {
         const project = await Project.findById(arrayOfProjects[i]);
         if (project) {
             for (let j = 0; j < 2; j++) {
                 let people = await Student.findById(project.intrestedPeople[j]).select("-password -seckey -is_banned -is_admin -role -_id -projectName ");
                 let people2 = await Student.findById(project.intrestedPeople[j]).select("-password -seckey -is_banned -is_admin -role -_id -projectName -partner -token -__v");
-                const partner = await Student.findById(people.partner);
+                if(people)
+                var partner = await Student.findById(people.partner);
+                if(partner && people2)
                 people2.partner_name = partner.name;
+                if(project && people2)
                 people2.project_name = project.title;
                 result.push(people2);
             }
         }
     }
+}
 
     return result;
 }
@@ -231,6 +236,21 @@ const getOwnerDeltails = async (req, res) => {
         }
     }
 }
+const getprojectDetails = async (req, res) => {
+    const id = req.params.id;
+
+    const project = await Project.findById(id);
+    
+    if (!project) {
+        res.status(404).json({ msg: "Not Found" });
+    }
+
+    else {
+       
+            res.status(200).json(project);
+
+    }
+}
 
 
 const getAllItems = async (req, res) => {
@@ -240,6 +260,7 @@ const getAllItems = async (req, res) => {
 
 
 const selectProject = async (req, res) => {
+   
     const pId = req.params.id;
     const project = await Project.findById(pId);
 
@@ -255,24 +276,31 @@ const selectProject = async (req, res) => {
 
 
     else {
-        const user = req.user;
-        const User = await Student.findById(user._id);
+        
+        const user = await Student.findOne({ email: req.params.user });
+        if(user)
+        var User = await Student.findById(user._id);
+        
         const other_user = partner_email;
         const isValidUser = await Student.findOne({ email: other_user });
 
-        if (String(User.projectName) !== ("000000000000000000000000")) {
+        if (User && (String(User.projectName) !== ("000000000000000000000000"))) {
             res.status(401).json({ msg: "Project Already Alloted To You." })
         }
         else if (isValidUser) {
+            
             if (String(isValidUser.projectName) !== "000000000000000000000000") {
                 res.status(401).json({ msg: "Project Already Alloted To Partner." })
             }
             else {
-
-                const addtostudu1 = await Student.findByIdAndUpdate(user._id, { projectName: project._id, partner: isValidUser._id })
-                const addtostudu2 = await Student.findByIdAndUpdate(isValidUser._id, { projectName: project._id, partner: user._id })
-                const addtointrestedpeople = await Project.findByIdAndUpdate(project._id, { $push: { intrestedPeople: user._id } })
-                const addtointrestedpeople2 = await Project.findByIdAndUpdate(project._id, { $push: { intrestedPeople: isValidUser._id } })
+                
+                if(isValidUser && project && User){
+                   
+                const addtostudu1 = await Student.findByIdAndUpdate(User._id, { projectName: project._id, partner: isValidUser._id })
+                const addtostudu2 = await Student.findByIdAndUpdate(isValidUser._id, { projectName: project._id, partner: User._id })
+                const addtointrestedpeople = await Project.findByIdAndUpdate(project._id, { $push: { intrestedPeople: User.email } })
+                const addtointrestedpeople2 = await Project.findByIdAndUpdate(project._id, { $push: { intrestedPeople: isValidUser.email } })
+                }
                 res.status(200).json({ msg: "Success" });
             }
         }
@@ -281,6 +309,7 @@ const selectProject = async (req, res) => {
         }
 
     }
+    
 }
 
 const deselectProject = async (req, res) => {
@@ -295,24 +324,26 @@ const deselectProject = async (req, res) => {
 
 
         else {
-            const User = req.user;
-            const user = await Student.findById(User._id)
+            
+            const user = await Student.findOne({ email: req.params.user })
 
 
 
-            if (String(user.projectName) !== String(project._id)) {
+            if (user&&String(user.projectName) !== String(project._id)) {
                 res.status(401).json({ msg: "This Project is not alloted to you." })
             }
 
 
             else {
+                if(project && user){
                 const partner = await Student.findById(user.partner);
                 const deltostudu1 = await Student.findByIdAndUpdate(user._id, { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
                 const deltostudu2 = await Student.findByIdAndUpdate(partner._id, { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
-                const deltointrestedpeople = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: user._id } })
-                const deltointrestedpeople2 = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: partner._id } })
+                const deltointrestedpeople = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: user.email } })
+                const deltointrestedpeople2 = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: partner.email } })
                 res.status(200).json({ msg: "Success" });
             }
+        }
 
 
         }
@@ -347,8 +378,9 @@ const downLoadDetails = async (req, res, next) => {
     var wb = XLSX.utils.book_new();
     const user = req.params.email;
     const isValidUser = await User.findOne({ email: user });
-
-    const arrayOfProjects = isValidUser.projects_posted;
+    
+    if(isValidUser)
+    var arrayOfProjects = isValidUser.projects_posted;
 
 
     var details = await intrestedPeople(arrayOfProjects);
@@ -360,10 +392,11 @@ const downLoadDetails = async (req, res, next) => {
     XLSX.utils.book_append_sheet(wb, ws, "Sheet 1");
     XLSX.writeFile(wb, down);
     res.download(down);
+    console.log("ready to download")
     // res.status(200).send(details);
 }
 
 
 
 
-export { newproject, updateProjectDetails, deleteProject, getOwnerDeltails, getAllItems, selectProject, deselectProject, getPostedProjects, downLoadDetails };
+export { newproject, updateProjectDetails, deleteProject, getOwnerDeltails, getAllItems, selectProject, deselectProject, getPostedProjects, downLoadDetails,getprojectDetails };

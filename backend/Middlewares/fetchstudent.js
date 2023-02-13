@@ -3,7 +3,7 @@ import Student from "../Models/Student.js"
 import User from "../Models/User.js"
 
 const checkIsStudent = (req,res,next)=>{
-    
+    console.log("hii1")
     if(req.user){
         if(req.user.role === "stud"){
             next();
@@ -13,7 +13,7 @@ const checkIsStudent = (req,res,next)=>{
         }
     }
     else{
-        res.status(404).send("User Not Logged In")
+        res.status(404).send("User is Not Logged In")
     }
 }
 
