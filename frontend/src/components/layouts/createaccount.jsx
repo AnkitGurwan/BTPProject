@@ -16,8 +16,10 @@ const Createaccount=()=>{
         const x=await registerUser(user.name, user.email);
         console.log(x);
         if(x===200){
-            
-            navigate('/login');}
+          toast.success('Email sent successfully', {
+            position: toast.POSITION.TOP_CENTER
+        });
+        navigate('/login');}
         if(x===400){
           toast.warning('Email already exist', {
             position: toast.POSITION.TOP_CENTER

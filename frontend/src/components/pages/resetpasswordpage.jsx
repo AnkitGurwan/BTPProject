@@ -2,6 +2,8 @@ import React from 'react';
 import { useNavigate,Link } from 'react-router-dom';
 import Header from '../layouts/header';
 import Resetpassword from '../layouts/resetpassword';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function Resetpasswordfunction(){
     return(

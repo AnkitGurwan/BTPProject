@@ -1,8 +1,9 @@
-import React,{useContext} from 'react';
+import React,{useContext,useEffect} from 'react';
 import { Link,useNavigate,useParams } from 'react-router-dom';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ItemContext from '../../context/project/ItemContext';
+import AuthContext from '../../context/authentication/AuthContext';
 
 
 
@@ -10,9 +11,17 @@ function Projectcard(props){
     const {project}=props;
     const {deleteProject} = useContext(ItemContext);
     const navigate=useNavigate();
+    const {downloadDetails,user,ownerdetails} = useContext(AuthContext);
 
     const params=useParams();
     const id=params.id;
+
+    const getItem=async ()=>{
+      await ownerdetails(id);
+    }
+    useEffect(()=>{
+      getItem();
+    },[])
 
     
 var modal = document.getElementById("myModal");
@@ -63,10 +72,20 @@ const click=()=>{}
       });
     }
   }
+  
+  if(user)
+  var userEmail=user.email
+ 
+  const download = async (e)=>{
+    e.preventDefault();
+    console.log("hii");
+  await downloadDetails(userEmail);
+  }
 
     return(
     <div className='projectcardmaindiv'>
       
+      <button class="btn btn-primary" style={{"margin-left":"30vw","margin-bottom":"2vh"}} onclick={download}>Download List of Interested Students</button>
         
             <div class="card" style={{width:"auto",height:"auto"}}>
             <div class="card-body">

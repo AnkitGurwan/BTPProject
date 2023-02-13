@@ -6,7 +6,7 @@ function Studentallproject(){
     return(
         <div>
             
-            <Header/>
+
             <Studentproject/>
             
         </div>

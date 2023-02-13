@@ -1,9 +1,15 @@
 import { useState } from "react";
 import AuthContext from "./AuthContext";
+import {useLocation, useNavigate } from 'react-router-dom';
+import * as Msal from 'msal'; 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 const AuthState = (props) => {
     const [user,setUser]=useState([])
+    const [token,setToken]=useState()
+    const [interest,setInterest]=useState([])
 
     const url = "http://localhost:5000"
 
@@ -18,7 +24,7 @@ const AuthState = (props) => {
         });
         
         const json = await response.json();
-        console.log("res = ",response.status);
+        
         return response.status
         // setUser(user.concat(json));
     }
@@ -63,7 +69,7 @@ const AuthState = (props) => {
         });
         
         const json = await response.json();
-        console.log(json)
+        return response.status
        
         // setUser(user.concat(json));
     }
@@ -77,7 +83,7 @@ const AuthState = (props) => {
         });
         
         const json = await response.json();
-        console.log(json);
+        
         // setUser(user.concat(json));
     }
 
@@ -102,19 +108,112 @@ const AuthState = (props) => {
             }
         })
 
-        console.log(response.status);
         const json=await response.json();
         setUser(json);
         
     
         // console.log("useritem:- ",json)
-         }
+        }
+
+        const projectdetails = async(id)=>{
+        
+            const response = await fetch(`${url}/project/projectdetails/${id}`, {
+                method: 'GET',
+                headers: {
+                    'Content-Type': "application/json",
+                    'auth-token':localStorage.getItem('token')
+                }
+            })
+    
+            const json=await response.json();
+            setInterest(json)
+            
+        
+            // console.log("useritem:- ",json)
+            }
+
+
+    const downloadDetails = async(email)=>{
+        console.log("Download1");
+
+        const response = await fetch(`${url}/project/intrestedpeople/${email}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': "application/json"
+            }
+        })
+
+        console.log("Download2");
+        const json=await response.json();
+       
+        }
+
+    
+    
+    const SigninStudent = async ()=> {
+    var x=100;
+    const msalConfig = {
+        auth: {
+          clientId: "9ea87694-877c-4d59-b65e-c4a3fd12799c",
+          authority: "https://login.microsoftonline.com/common",
+          redirectUri: "http://localhost:3000/studentallproject",
+        },
+        cache: {
+          cacheLocation: "localStorage", // This configures where your cache will be stored
+          storeAuthStateInCookie: false, // Set this to "true" if you are having issues on IE11 or Edge
+        }
+      };  
+        
+      // Add here the scopes to request when obtaining an access token for MS Graph API
+      // for more, visit https://github.com/AzureAD/microsoft-authentication-library-for-js/blob/dev/lib/msal-core/docs/scopes.md
+      const loginRequest = {
+        scopes: ["openid", "profile", "User.Read"]
+      };
+      
+      // Add here scopes for access token to be used at MS Graph API endpoints.
+      const tokenRequest = {
+        scopes: ["Mail.Read"]
+      };
+    
+    const myMSALObj = new Msal.UserAgentApplication(msalConfig);
+
+    await myMSALObj.loginPopup(loginRequest)
+          .then(loginResponse => {
+            
+            // console.log('id_token acquired at: ' + new Date().toString());
+            
+            if (myMSALObj.getAccount()) {
+             setToken(loginResponse.idToken)
+             x=200;
+             
+            }
+          }).catch(error => {
+           
+            console.log(error);
+          });
+
+          return x;
+      }
+
+
+
+
+      const studentDetails = async()=>{
+        
+        const response = await fetch(`${url}/auth/microsoft`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': "application/json"
+            }
+        })
+
+        const json=await response.json();
+    
+        console.log("useritem:- ",json)
+        }
     
 
-    
-
-
-    return (<AuthContext.Provider value={{registerUser,loginUser,confirmEmail,resetPassword,resetpasswordconfirmEmail,loginStudent,ownerdetails,user}}>
+    return (<AuthContext.Provider value={{registerUser,loginUser,confirmEmail,resetPassword,resetpasswordconfirmEmail,loginStudent,ownerdetails,user,SigninStudent,token,downloadDetails,interest,projectdetails,studentDetails}}>
         {props.children}
     </AuthContext.Provider>
     )

@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 function Projectcard(props){
     const {project}=props;
+    const idtoken=props.idtoken
    
     return(
     <div className='projectcardmaindiv'>
@@ -17,7 +18,7 @@ function Projectcard(props){
                 <h6 class="card-title" style={{"text-align":"center"}}>{project.creation_date} </h6>
                 <h6 class="card-title" style={{"text-align":"center"}}>{project.creation_time} </h6>
                 <div className='projectcardupdate'>
-                <Link className='projectcardlink1' style={{width:"90px"}} to={project._id}>Interested</Link>
+                <Link className='projectcardlink1' style={{width:"90px"}} to={project._id} state={{idtoken:idtoken}} >Interested</Link>
                 
                 </div>
 

@@ -38,6 +38,7 @@ import Student from "./Models/Student.js";
 
 //mongoose connection
 import connectDatabase from "./config/database.js"
+import authRouter from "./Views/msAuth.js";
 connectDatabase();
 
 
@@ -57,7 +58,8 @@ app.use(sessions({
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use("",msRoute);
+// app.use("",msRoute);
+app.use(authRouter)
 app.use("/student",student)
 app.use("/project",project);
 

@@ -6,7 +6,7 @@ import ItemContext from '../../context/project/ItemContext';
 function Projectcard(props){
     const {project}=props;
  
-
+   
     
 
     return(
@@ -20,6 +20,7 @@ function Projectcard(props){
                 <p class="card-text"><h4>Specialisation</h4>{project.specialization}</p>
                 <h6 class="card-title">Created on {project.creation_date} </h6>
                 <h6 class="card-title">Created at {project.creation_time} </h6>
+               
                 
             </div>
            

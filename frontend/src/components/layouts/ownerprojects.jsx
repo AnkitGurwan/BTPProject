@@ -51,12 +51,12 @@ const Createaccount=()=>{
           
           
           <div className='allprojectslinkdiv'><Link to='newproject' className='allprojectslink'  ><h1 style={{"padding":"5px"}}>+ </h1>NEW PROJECT</Link></div>
-          <div class="input-group" className='searchdiv'>
+          <div class="input-group" className='searchdiv1'>
             <div class="form-outline">
              <input id="search-input" type="search"  class="form-control" name='search' placeholder="Search by Title name" value={search} onChange={detectChanges} />
          </div>
          </div>
-          <div className='allprojectsdiv'>{itemsspecific.filter((projects)=>{ return search.toString().toLowerCase()==='' ? projects : projects.title.toLowerCase().includes(search)}).map( (project,i)=>{ return (<Projectcard key={i} project={project}/>)})}</div>
+          <div className='allprojectsdiv'>{itemsspecific.filter((projects)=>{ return search.toString().toLowerCase()==='' ? projects : projects.title.toLowerCase().includes(search.toLocaleLowerCase())}).map( (project,i)=>{ return (<Projectcard key={i} project={project}/>)})}</div>
           </div>
           
       
