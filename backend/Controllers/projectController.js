@@ -326,12 +326,9 @@ const deselectProject = async (req, res) => {
             
             const user = await Student.findOne({ email: req.params.user })
 
-
-
             if (user&&String(user.projectName) !== String(project._id)) {
                 res.status(401).json({ msg: "This Project is not alloted to you." })
             }
-
 
             else {
                 if(project && user){
@@ -343,16 +340,12 @@ const deselectProject = async (req, res) => {
                 res.status(200).json({ msg: "Success" });
             }
         }
-
-
         }
     }
 
     else{
         res.status(405).json({msg:"Failure"});
     }
-
-
 }
 
 
@@ -370,7 +363,6 @@ const getPostedProjects = async (req, res) => {
         res.status(200).json(projects_array);
     }
 }
-
 
 
 const downLoadDetails = async (req, res, next) => {
