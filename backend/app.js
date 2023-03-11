@@ -3,7 +3,6 @@ dotenv.config({path:"backend/config/.env"});
 
 import passport from "passport";
 
-
 import express from "express";
 
 const app = express();
@@ -11,7 +10,9 @@ const app = express();
 
 import cors from "cors";
 const corsOptions ={
-    origin:'http://localhost:3000', 
+    'Access-Control-Allow-Origin':'http://localhost:3000', 
+    'Access-Control-Allow-Methods': ['GET', 'POST', 'PUT'],
+    'Access-Control-Allow-Headers': ['Content-Type', 'Origin','Authorization'],
     credentials:true,            //access-control-allow-credentials:true
     optionSuccessStatus:200,
  }
