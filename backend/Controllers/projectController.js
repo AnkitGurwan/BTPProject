@@ -186,6 +186,7 @@ const updateProjectDetails = async (req, res) => {
 
 
 const deleteProject = async (req, res) => {
+   
     const user = await User.findOne({ email: req.user.id });
     const pId = req.params.id;
     const project = await Project.findById(pId);
@@ -198,20 +199,18 @@ const deleteProject = async (req, res) => {
     }
 
     else {
-
         if (project.intrestedPeople.length !== 0) {
-            const partner = await Student.findById(project.intrestedPeople[0]);
-            const deltostudu1 = await Student.findByIdAndUpdate(project.intrestedPeople[0], { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
-            const deltostudu2 = await Student.findByIdAndUpdate(project.intrestedPeople[1], { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
-            const deltointrestedpeople = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: user._id } })
-            const deltointrestedpeople2 = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: partner._id } })
+            const stud1 = await Student.find({email:project.intrestedPeople[0]});
+            const stud2 = await Student.findOne({email:project.intrestedPeople[1]});
+            const deltostudu1 = await Student.findOneAndUpdate({email:project.intrestedPeople[0]}, { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
+            const deltostudu2 = await Student.findOneAndUpdate({email:project.intrestedPeople[1]}, { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
+            const deltointrestedpeople = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: stud1.email } })
+            const deltointrestedpeople2 = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: stud2.email } })
         }
 
         const isDeleted = await Project.findByIdAndDelete(pId);
         const delProject = await User.findByIdAndUpdate(user._id, { $pull: { projects_posted: project._id } })   // Push the intrestedPeople array in the Items.
         res.status(200).json({ msg: "Success" });
-
-
 
     }
 }
