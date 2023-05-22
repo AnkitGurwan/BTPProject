@@ -62,6 +62,10 @@ const ItemState=(props)=>{
         setItemsspecific(json);       
 
         dispatch(setSpecificProjects(json));
+        
+
+        console.log("status",response.status);
+        return response.status;
         // for(let i = 0; i < json.length; i++) {
         //     console.log("10")
         //     dispatch(setSpecificProjects(json[i]));

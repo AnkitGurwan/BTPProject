@@ -11,15 +11,19 @@ var _ = require('lodash');
 const Createaccount=()=>{
     const {Projectspecific,createProject} = useContext(ItemContext);
     const {downloadDetails} = useContext(AuthContext);
-    const [mobileMenu,setMobileMenu]=useState(false);
+    const [mobileMenu,setMobileMenu]=useState(false); 
+    const [loading,setLoading]=useState(true);
     
     let [count,setCount]=useState(0);
 
     const items = useSelector(state => state.allProjects.specificProjects);
+    // if(items)setLoading(false)
     // items.reverse();
 
     const getItem=async ()=>{        
-        Projectspecific(); 
+        const x=await Projectspecific(); 
+        console.log("x",x)
+        if(x===200)setLoading(false);
     };
     useEffect(()=>{
         getItem();
@@ -54,21 +58,21 @@ const Createaccount=()=>{
     }
     }
     
-    const openNav=()=> {
-      document.getElementById("sidenavbar").style.top="12vh"
-      document.getElementById("sidenavbar").style.width="20vw"
-      document.getElementById("sidenavbar").style.height="88vh"
-      document.getElementById("text-left").style.left = "20vw";
-      document.getElementById("text-left").style.width = "80vw";
-    }
+    // const openNav=()=> {
+    //   document.getElementById("sidenavbar").style.top="12vh"
+    //   document.getElementById("sidenavbar").style.width="20vw"
+    //   document.getElementById("sidenavbar").style.height="88vh"
+    //   document.getElementById("text-left").style.left = "20vw";
+    //   document.getElementById("text-left").style.width = "80vw";
+    // }
     
-    const closeNav=()=> {
-      document.getElementById("sidenavbar").style.top="0"
-      document.getElementById("sidenavbar").style.width = "0vw";
-      document.getElementById("sidenavbar").style.height="0vh"
-      document.getElementById("text-left").style.left = "0vw";
-      document.getElementById("text-left").style.width = "100vw";
-    }
+    // const closeNav=()=> {
+    //   document.getElementById("sidenavbar").style.top="0"
+    //   document.getElementById("sidenavbar").style.width = "0vw";
+    //   document.getElementById("sidenavbar").style.height="0vh"
+    //   document.getElementById("text-left").style.left = "0vw";
+    //   document.getElementById("text-left").style.width = "100vw";
+    // }
 
 
     // Get the button that opens the modal
@@ -105,7 +109,7 @@ const Createaccount=()=>{
     }
   
     return(             
-          <div class="container-fluid1 text-center"> 
+          <div class="container-fluid1 flex justify-center items-center"> 
 
           
  
@@ -122,7 +126,7 @@ const Createaccount=()=>{
               </Link>
               
             </div> */}
-            <div class="text-left" id="text-left">
+           <div class="text-left" id="text-left">
               {/* navbar 1   */}
             <nav class="bg-gray-900" style={{"paddingRight":"20px"}}>
               <div class="max-w-7xl mx-auto px-2 sm:px-10 lg:px-200">
@@ -157,7 +161,13 @@ const Createaccount=()=>{
                 </div>
               </div>
             </nav>
-             
+
+            
+            {loading?(<div class="flex items-center justify-center h-screen">
+              <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+              </div>
+            ):
+            <div>
               <div className='allprojectslinkdiv'>
                 <div id="myBtn" className='allprojectslink'>
                   <h1 className='p-0 md:p-1'>+ </h1>NEW PROJECT
@@ -177,6 +187,9 @@ const Createaccount=()=>{
         <p class="_para__feedback_1ob32_130 text-xs md:text-sm lg:text-lg flex-wrap" style={{"marginBottom":"0.5vw","display":"flex","alignContent":"center"}} hover={{"textDecoration":"underline"}}>We value your opinion, please take a moment to fill out our   <Link className='px-1 ' to={`/feedback`}  style={{"textDecoration":"none"}}> feedback form </Link>   to help us improve.</p>
        </div>
             </div>
+            }
+            </div>
+            
 
             {/* modal on new project */}
             <div id="myModal" class="modal2">

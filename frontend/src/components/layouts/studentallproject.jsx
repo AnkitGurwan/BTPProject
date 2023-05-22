@@ -15,10 +15,10 @@ const Createaccount=(req,res)=>{
   const [mobileMenu,setMobileMenu]=useState(false);
   const [allowed,setAllowed]=useState(false);
   const [loading,setLoading]=useState(true);
+  const Navigate = useNavigate();
 
   var items = useSelector(state => state.allProjects.allProjects);
   
-
   if(location.state)
     var idtoken=location.state.token
   if(idtoken)
@@ -51,12 +51,18 @@ const Createaccount=(req,res)=>{
         setAllowed(false);
       }
     }
-    
+    else 
+    {
+        Navigate("/studentlogin");
+        (toast.error('Please login to access', {
+          position: toast.POSITION.TOP_CENTER
+      }));
+    } 
   }
  
   const getItem=async ()=>{
       await allProjects();
-      if(localStorage.getItem('name')===null)
+      if(localStorage.getItem('name')===null && code)
       await getToken(code);
       await getAllStudent(); 
       await funcAllowed();
@@ -68,12 +74,6 @@ const Createaccount=(req,res)=>{
   const userName=localStorage.getItem('name');
 
   {items.filter((project)=>project.intrestedPeople.map((emailcheck)=>{if(emailcheck===user){count=project._id;flag=1}}))}
-
-  
-  const calculate =async ()=>{
-    await Promise.all(items.map((array)=>{array.intrestedPeople.map((individual)=>{if(individual===userEmail) {if(document.getElementById('individual')){document.getElementById('individual').style.backgroundColor='green';document.getElementById('individual').innerText='Registered';}} })}))
-  }
-
   
       
   useEffect(()=>{
@@ -131,9 +131,9 @@ window.addEventListener("click", function(event) {
         </div>
         
         {loading?(<div class="flex items-center justify-center h-screen">
-  <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
-</div>
-):<div>
+          <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+        </div>
+        ):<div>
         {allowed?(<div className='studentallprojectdivmain'>
             <nav class="bg-gray-900 pr-0 md:pr-12">
                   <div class="max-w-7xl mx-auto px-0 lg:px-200">
