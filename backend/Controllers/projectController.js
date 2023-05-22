@@ -35,8 +35,8 @@ if(arrayOfProjects){
         const project = await Project.findById(arrayOfProjects[i]);
         if (project) {
             for (let j = 0; j < 2; j++) {
-                let people = await Student.findById(project.intrestedPeople[j]).select("-password -seckey -is_banned -is_admin -role -_id -projectName ");
-                let people2 = await Student.findById(project.intrestedPeople[j]).select("-password -seckey -is_banned -is_admin -role -_id -projectName -partner -token -__v");
+                let people = await Student.find({email:project.intrestedPeople[j]}).select("-password -seckey -is_banned -is_admin -role -_id -projectName ");
+                let people2 = await Student.find({email:project.intrestedPeople[j]}).select("-password -seckey -is_banned -is_admin -role -_id -projectName -partner -token -__v");
                 if(people)
                 var partner = await Student.findById(people.partner);
                 if(partner && people2)
@@ -103,6 +103,50 @@ const newproject = async (req, res) => {
     }
 
 }
+
+const newStudent = async (req, res) => {
+
+    const isvaliD1 = await Student.findOne({ email: req.body.user1email });
+    const isvaliD2 = await Student.findOne({ email: req.body.user2email });
+    console.log("step3")
+
+    if(!isvaliD1){
+        console.log("step4")
+    await Student.create({
+        name: req.body.user1name,
+        email: req.body.user1email,
+        rollNum: req.body.user1roll,
+        projectName: '000000000000000000000000',
+        partner: '000000000000000000000000',
+        is_banned: false,   
+    })}
+    if(!isvaliD2){
+    await Student.create({
+        name: req.body.user2name,
+        email: req.body.user2email,
+        rollNum: req.body.user2roll,
+        projectName: '000000000000000000000000',
+        partner: '000000000000000000000000',
+        is_banned: false,   
+    })
+    }
+    console.log("step5")
+        res.status(200).json({ msg: "Success" });
+    }
+
+// const getallstudent= async (req, res) => {
+//     const isvaliD1 = await Student.findOne({ email: req.params.email });
+//     if(isvaliD1 && isvaliD1.partner!='000000000000000000000000')
+//     var isvaliD2 = await Student.findById(isvaliD1.partner );
+
+//     if(isvaliD2)
+//     res.status(200).json(isvaliD2);
+// }
+const getallstudent = async (req, res) => {
+    const students = await Student.find();
+    res.status(200).json(students);
+}
+
 
 
 const updateProjectDetails = async (req, res) => {
@@ -186,6 +230,7 @@ const updateProjectDetails = async (req, res) => {
 
 
 const deleteProject = async (req, res) => {
+   
     const user = await User.findOne({ email: req.user.id });
     const pId = req.params.id;
     const project = await Project.findById(pId);
@@ -198,20 +243,18 @@ const deleteProject = async (req, res) => {
     }
 
     else {
-
         if (project.intrestedPeople.length !== 0) {
-            const partner = await Student.findById(project.intrestedPeople[0]);
-            const deltostudu1 = await Student.findByIdAndUpdate(project.intrestedPeople[0], { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
-            const deltostudu2 = await Student.findByIdAndUpdate(project.intrestedPeople[1], { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
-            const deltointrestedpeople = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: user._id } })
-            const deltointrestedpeople2 = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: partner._id } })
+            const stud1 = await Student.find({email:project.intrestedPeople[0]});
+            const stud2 = await Student.findOne({email:project.intrestedPeople[1]});
+            const deltostudu1 = await Student.findOneAndUpdate({email:project.intrestedPeople[0]}, { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
+            const deltostudu2 = await Student.findOneAndUpdate({email:project.intrestedPeople[1]}, { projectName: "000000000000000000000000", partner: "000000000000000000000000" })
+            const deltointrestedpeople = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: stud1.email } })
+            const deltointrestedpeople2 = await Project.findByIdAndUpdate(project._id, { $pull: { intrestedPeople: stud2.email } })
         }
 
         const isDeleted = await Project.findByIdAndDelete(pId);
         const delProject = await User.findByIdAndUpdate(user._id, { $pull: { projects_posted: project._id } })   // Push the intrestedPeople array in the Items.
         res.status(200).json({ msg: "Success" });
-
-
 
     }
 }
@@ -375,9 +418,11 @@ const getPostedProjects = async (req, res) => {
 
 
 const downLoadDetails = async (req, res, next) => {
+    console.log("0")
     var wb = XLSX.utils.book_new();
     const user = req.params.email;
     const isValidUser = await User.findOne({ email: user });
+    console.log("1")
     
     if(isValidUser)
     var arrayOfProjects = isValidUser.projects_posted;
@@ -388,15 +433,17 @@ const downLoadDetails = async (req, res, next) => {
     temp = JSON.parse(temp);
     var ws = XLSX.utils.json_to_sheet(temp);
 
+    console.log("2")
+
     var down = __dirname + `/public/student_data.xlsx`;
     XLSX.utils.book_append_sheet(wb, ws, "Sheet 1");
     XLSX.writeFile(wb, down);
     res.download(down);
     console.log("ready to download")
-    // res.status(200).send(details);
+    res.status(200).send(details);
 }
 
 
 
 
-export { newproject, updateProjectDetails, deleteProject, getOwnerDeltails, getAllItems, selectProject, deselectProject, getPostedProjects, downLoadDetails,getprojectDetails };
+export { newproject,newStudent,getallstudent, updateProjectDetails, deleteProject, getOwnerDeltails, getAllItems, selectProject, deselectProject, getPostedProjects, downLoadDetails,getprojectDetails };

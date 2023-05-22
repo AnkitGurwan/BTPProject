@@ -4,21 +4,27 @@
     box-sizing: border-box;
   }
 
-/* header */
-.headernew{
-    background-color: #10A19D;
-    height:23vh;
-    display: flex;
-    align-items: center;
-    width: 100vw;
+  .disable-scrolling{
+    height: 100%;
+    overflow-x: hidden;
 }
 
+/* header */
+
+.mainheader{
+    width: 100vw;
+    height:23vh;
+    background-color: #10A19D;
+    display: flex;
+    align-items: center;
+    padding: 0.7rem 0;
+    margin: 0;
+}
 .headerdiv{
     display: flex;
     flex-direction: column;
     width: 70vw;
 }
-
 .headerh3{
     text-align: end;
     color: aliceblue;
@@ -26,23 +32,20 @@
     font-size: 1.5vw;
     padding:0px 10vw 0 5vw;
 }
-
 .headerspan{
-padding-left: 5vw;
+    padding-left: 5vw;
 }
-
 .headerspan2{
-padding-left:3vh;
-padding-right:3vh;
-color: aliceblue;
-font-size: 1.5vw;
-text-decoration: none;
+    padding-left:3vh;
+    padding-right:3vh;
+    color: aliceblue;
+    font-size: 1.5vw;
+    text-decoration: none;
 }
 .headerspan2:hover{
     text-decoration: underline;
     cursor: pointer;
 }
-
 .headerh1{
     color: white;
     text-align: end;
@@ -51,104 +54,41 @@ text-decoration: none;
     font-size: 2.7vw;
     padding:0px 10vw 0 5vw;
 }
-
 .headerimage{
-    height:100px;
-    width:auto;
-    padding:1.5vh 0px 1.5vh 2vw;
-    
-}
-.myprojectsdivb{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20vw;
-    height: 8vh;
-    margin-top: 40px;
-    margin-right: 580px;
-    background-color: #6D67E4;
-   
-    text-decoration: none;
-    color: #EEEEEE;
-    text-decoration: none;
-   
-}
-.myprojectsdiva:hover{
-    color: white;
-    background-color: #aeacb8;
-
-}
-.myprojectsdivb:hover{
-    color: white;
- 
-}
-.myprojectsdiva{
-    
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 20vw;
-    height: 8vh;
-    margin-top: 40px;
-    margin-right: 580px;
-   
-    text-decoration: none;
-    color: #EEEEEE;   
-    text-decoration: none;
-}
-
-.myprojectsdiv1{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding:0 10px ;
-}
-.myprojectsdiv2{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 0 10px;
-    font-size: x-large;
-    font-weight: 600;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+    width:12vw;
+    height:auto;
+    padding:1.5vh 1.5vw;
 }
 
 
-
-
-/* body */
+/* interface */
 
 .bodymaindiv{
     display: flex;
-   
     justify-content: center;
     align-items: center;
     height: 70vh;
-    
-    
 }
-
 .bodydiv1{
-    width: 250px;
-    height: 250px;
+    width: 14.375rem;
+    height: 14.375rem;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px;
+    margin: 2.5rem;
     box-shadow: gray;
     background-image: url('https://www.isponline.org/wp-content/uploads/sites/71/2020/05/TeachersTrained-1024x1024.png');
     background-size: contain;
 }
 .bodydiv2{
-    width: 250px;
-    height: 250px;
+    width: 14.375rem;
+    height: 14.375rem;
     border-radius: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 30px;
+    margin: 2.5rem;
     box-shadow: gray;
     background-image: url('https://www.iconbunny.com/icons/media/catalog/product/1/5/156.12-male-student-i-icon-iconbunny.jpg');
     background-size: contain;
@@ -156,70 +96,97 @@ text-decoration: none;
 .bodya{
     box-sizing: border-box;
     text-decoration: none;
-    border-radius: 3px;
+    border-radius: 0.188rem;
     background-color: #FB2576;
     color: black;
     font-family: Georgia, 'Times New Roman', Times, serif;
-    font-size: 25px;
+    font-size: 1.5rem;
     font-weight: 600;
-    padding: 8px;
-    
+    padding: 0.5rem;
 }
+
+
+/* proflogin */
+.proflogininput{
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left:30px;
+    padding-right:30px;
+}
+.profloginlink{
+    padding-top: 15px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+}
+.centerr{
+    width: 30vw;
+    margin: auto;
+    padding:10px;
+}
+
 .footer2maindiv{
     position: fixed;
     width: 100vw;
-    height: 15vh;
-    background-color: #10A19D;
+    height: 12vh;
+    padding-right: 0.5rem;
+    background-color: #B2A4FF;
     display: flex;
     justify-content: end;
     align-items: center;
     z-index: 1;
-    font-family:Georgia, 'Times New Roman', Times, serif ;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
 .footer2span1{
     text-align: end;
-    padding: 5px 40px 5px 0px;
-    font-size: x-large;
+    padding: 0.5rem 1.5rem 0.5rem 0px;
+    font-size: 1.2rem;
 }
 .footer2div1{
     color: white;
+    font-weight: 500;
 }
 .footer2div2{
-    color: blue;
-    font-weight: 500;
+    color: white;
+    font-weight: 800;
 }
 .footer2span2:hover{
     text-decoration: underline;
 }
 .footer2span2{
-   
-    margin-left: 2px;
-    margin-right:20px ;
+    display: flex;
+    align-items: center;
+    background-color: red;
+    padding-left: 5px;
+    padding-right:5px;
+    border-radius: 5px;
+    margin-left: 5px;
+    margin-right:1rem ;
+    opacity: 0.7;
+    
 }
 .footer2a{
     text-decoration: none;
-    color: red;
+    color: white;
     font-weight: 600;
-    font-size: x-large;
-    
+    font-size: large; 
+}
+.footer2span2:hover{
+    text-decoration: none;
+    opacity: 1;
+}
+.footer2a:hover{
+    color: white;
 }
 
 
-
-/*body2*/
-/* .body2div{
-    height: 77vh;
-    background-image: url(https://www.iitg.ac.in/acad/slider_images/2.jpg);
-    background-size: 100% 100%;
-} */
+/* forgotpassword */
 
 .centerfull{
-    width: 400px;
-    margin: 40px auto;
-    border-radius: 10px;
+    width: 30vw;
+    margin: auto;
+    border-radius: 8px;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
  }
- 
  .centerfull h1{
      text-align: center;
      padding: 0 0 10px 0;
@@ -231,31 +198,38 @@ text-decoration: none;
  }
  .centerfullbutton{
     background-color: blue;
+    width: 40px;
  }
-
  .activeclass{
     background-color: #10A19D;
  }
-
-
- form.text_field{
+ .centerfull form input{
      border-bottom: 2px solid #adadad; 
  }
-
  .formshadow{
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     margin: 0px 0;
     padding:40px 20px 0;
-    border-radius: 6px;
-    height: 58vh;
+    border-radius: 7px;
+    height: fit-content;
  }
+ .centerfull button{
+    padding:0;
+    margin: auto;
+    width: 120px;
+    height: 50px;
+    color: white;
+    background-color: blue;
+    border-radius: 4px;
+    font-size: 20px;
+    border: none;
+    margin-top: 30px;
+}
 
  .buttonmodify
  {
-    width: 100%;
-    
+    width: 100%;   
  }
- 
  
  .body2input{
     width: 100%;
@@ -385,10 +359,11 @@ text-decoration: none;
     width: 100%;
     text-align: center;
     color: tomato;
-    font-size: 25px;
-    font-weight: 600;
+    font-size: 30px;
+    font-weight: 700;
     padding-bottom: 40px;
     border-bottom: 2px black;
+    text-decoration: underline;
 }
 
 .cardlabell{
@@ -430,13 +405,23 @@ text-decoration: none;
 }
 
 
-/* createaccount */
+/* profcreateaccount */
 
-.formcreateaccount{
+.centerrr{
+    width: 30vw;
+    margin: auto;
+    padding:10px;
+}
+.centerrr form{
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    
- }
+    align-items: center;
+    padding: 10px 0px;
+}
+.centerrr form button{
+    margin: 10px 0px;
+}
 
 .cardbutton1{
     width: 10vw;
@@ -508,66 +493,157 @@ text-decoration: none;
   .container-fluid1{
     display: flex;
     width: 100vw;
-    
   }
-  
-  
-  .sidenavbar {
-    position: fixed;
-    top: 15vh;
-    background-color: #453C67;
-    height: 100%;
-    width: 20vw;
-    margin: 0%;
-    padding: 0%;
-    border-right: #B05A7A solid 2px;
-  }
-  
-  /* Set black background color, white text and some padding */
- .text-left{
-    width: 80vw;
-    position: absolute;
-    top: 15vh;
-    left: 20vw;
-    margin: auto;
- }
 
-.allprojectsdiv{
+
+/* profallprojects   */
+
+.myprojectsdivb{    
     display: flex;
-    flex-wrap: wrap;
-    justify-content: start;
-    padding: auto;
-    margin: 10px 60px;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 8vh;
+    margin-top: 35px;
+    background-color: #6D67E4;
+    text-decoration: none;
+    color: #EEEEEE;
+    text-decoration: none;
 }
+.myprojectsdiva:hover{
+    color: white;
+    background-color: #aeacb8;
+}
+.myprojectsdivb:hover{
+    color: white;
+}
+.myprojectsdiva{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 8vh;
+    margin-top: 35px;
+    text-decoration: none;
+    color: #EEEEEE;   
+    text-decoration: none;
+}
+.myprojectsdiv1{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0 10px ;
+}
+.myprojectsdiv2{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 10px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+.sidenavbar {
+    position: fixed;
+    top: 0;
+    background-color: #453C67;
+    height: 0vh;
+    width: 0vw;
+    margin: 0%;
+    padding: 30px 0 0 0;
+    /* border-right: #B05A7A solid 2px; */
+    transition: 0.5s;
+    overflow-x: hidden;
+  }
+.openbtn {
+    font-size: 17px;
+    font-weight: 600;
+    cursor: pointer;
+    background-color: green;
+    color: white;
+    padding: 5px 5px;
+    border: none;
+    border-radius: 2px;
+    position: absolute;
+    left: 0%;
+    margin: 5px 8px 0;  
+}
+#text-left
+{
+    transition: 0.5s;
+}
+.sidenavbar .closebtn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 36px;
+    margin-left: 50px;
+    text-decoration: none;
+    background-color:#453C67;
+    border: none;
+    color: black;
+    font-weight: 800;
+    transition: 0.5s;
+}
+/* Set black background color, white text and some padding */
+.text-left{
+    width: 100vw;
+    position: absolute;
+    top: 12vh;
+    left: 0vw;
+    padding-top: 0vh;
+}
+/* .allprojectsdiv{
+    display: grid;
+    grid-template-columns: repeat(5,19vw);
+    justify-content: start;
+    margin:8vh 2.5vw 3vh;
+} */
 .allprojectsdivread{
-    margin: 10px 5vw;
-    padding: 20px;
+    width: 100vw;
+    padding: 0 12vw;
+    display: flex;
 }
 .allprojectsdiv2{
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
     padding: auto;
-    margin: 10px 60px;
+    margin: 0 5vw;
 }
-
 .cardbody{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10px 15px;
-    
+       
 }
-
 .allprojectslinkdiv{
     width: 100%;
     display: flex;
     justify-content: end;
-    padding: 20px 60px;
-    height: 100px;
+    margin-top: 0.5vh;
+    padding: 0.3rem 2rem;
+    height: 60px;
     align-items: center;  
 }
+.loader {
+    width: 2rem;
+    height: 2rem;
+    margin-right: 1vw;
+    border: 5px solid #FFF;
+    border-bottom-color: transparent;
+    border-radius: 50%;
+    display: inline-block;
+    box-sizing: border-box;
+    animation: rotation 1s linear infinite;
+    }
+
+    @keyframes rotation {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+    } 
 
 .allprojectslink{
     display: flex;
@@ -576,24 +652,27 @@ text-decoration: none;
     text-decoration: none;
     background-color: #FB2576;
     color: white;
-    height: 100%;
-    width: 220px;
+    height: 95%;
+    width: 180px;
     border-radius: 4px;
-    font-size: 23px;
-    font-weight: 500;
-    
+    font-size: 21px;
+    font-weight: 600;
+    opacity: 1;  
+    transition: 0.3s;  
+}
+.allprojectslink:hover{
+    color: white;
+    cursor: pointer;
+    opacity: 0.8;
 }
 .projectcardmaindiv{
-    padding: 20px 20px;
+    width: 18vw;
+    margin: 1vh 0 5vh;
 }
 .projectcardmaindiv1{
-    padding: 0px 20px;
+    padding: 0px 1rem;
     width: 90vw;
-   
     top: 15vh;
-}
-.allprojectsdiv{
-    margin-top: 0;
 }
 
 
@@ -604,23 +683,29 @@ text-decoration: none;
     width: 100%;
     display: flex;
     justify-content: end;
-    align-items: center;
     text-decoration: none;
-    height: 35px;
+    height: 2rem;
     
 }
 .projectcardlink1{
-    background-color:#82AAE3;
-    color: white;
-    height: 100%;
+    background-color: rgba(235, 229, 229, 0.783);
+    height: 90%;
+    width: 2rem;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 20%;
     text-decoration: none;
     border-radius: 3px;
-    font-size: large;
-    margin:0  2px ;
+}
+.interestedlink{
+    background-color: rgb(235, 229, 229);
+    height: 90%;
+    width: 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    border-radius: 3px;
 }
 .projectcardlink2{
     background-color:red;
@@ -638,8 +723,8 @@ text-decoration: none;
 .goback{
     text-decoration: none;
     cursor: pointer;
-    font-size: 25px;
-    margin:0  40px;
+    font-size: 1.5rem;
+    margin:0 2vw;
    
 }
 .goback:hover{
@@ -648,13 +733,12 @@ text-decoration: none;
 }
 .totalprojects{
     margin:10px auto;
-   
     padding-right: 60px;
-    font-size: 30px;
+    font-size: 25px;
     font-weight: 600;
     font-family: 'Times New Roman', Times, serif;
+    text-align: center;
 }
-
 
 
 
@@ -675,8 +759,8 @@ text-decoration: none;
   /* projectcardspecific Modal Content/Box */
   .modal-content {
     background-color: #fefefe;
-    margin: 15% auto; /* 15% from the top and centered */
-    padding: 20px;
+    margin: 10% auto; /* 15% from the top and centered */
+    padding:10px 25px 10px 25px;
     border: 1px solid #888;
     width: 30%; /* Could be more or less, depending on screen size */
     font-size: large;
@@ -700,6 +784,51 @@ text-decoration: none;
     text-decoration: none;
     cursor: pointer;
   }
+
+/* owner add project modal */
+
+/*projectcardmodal*/
+.modal2 {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  /* projectcardspecific Modal Content/Box */
+  .modal-content2 {
+    background-color: #fefefe;
+    margin: 2% auto; /* 15% from the top and centered */
+    padding: 0 20px 20px;
+    border-radius: 5px;
+    width: 40vw; /* Could be more or less, depending on screen size */
+    font-size: large;
+    display: flex;
+    flex-direction: column;
+    align-items: end;
+
+  }
+
+  /* The Close Button */
+  .close2 {
+    color: gray;
+    float: right;
+    font-size: 40px;
+    font-weight:500;
+  }
+  
+  .close2:hover,
+  .close2:focus {
+    color: gray;
+    text-decoration: none;
+    cursor: pointer;
+  }
   .projectcardlink22{
     background-color:red;
     color: white;
@@ -707,6 +836,7 @@ text-decoration: none;
     width: 70px;
     text-decoration: none;
     font-size: large;
+    border: none;
     border-radius: 3px;
     display: flex;
     justify-content: center;
@@ -734,7 +864,7 @@ text-decoration: none;
 /* studentallproject */
 .studentallprojectdivmain{
     position: absolute;
-    top: 15vh;
+    top: 12vh;
     width: 100vw;
 }
 .studentallprojectdiv1{
@@ -773,19 +903,52 @@ text-decoration: none;
 }
 .notregisspan2{
     font-size: 25px;
+    background-color: green;
+    padding: 5px 15px;
+    border-radius: 4px;
+    color: white;
+}
+.notregisspan3{
+    font-size: 25px;
     background-color: red;
     padding: 5px 15px;
     border-radius: 4px;
     color: white;
 }
 
+.modalptag{
+    position:absolute;
+    top:23.5vh;
+    right:8vw;
+    color: black;
+    background-color:whitesmoke;
+    
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    font-size: larger;
+    font-family:Arial, Helvetica, sans-serif;
+    font-weight: 600;
+}
+
+/* modal */
+#myModal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+
 
 /* studentspecific */
 .studentspecificdiv{
     position: absolute;
-    top: 15vh;
+    top: 12vh;
     width: 100vw;
-    
+    padding-bottom: 5vh;
 
 }
 /* studentspecificprojectcard */
@@ -813,8 +976,8 @@ text-decoration: none;
   .projectcardlink222{
     background-color:orange;
     color: white;
-    height: 35px;
-    width: 77px;
+    width: auto;
+    padding: 5px;
     text-decoration: none;
     font-size: large;
     border-radius: 3px;
@@ -826,10 +989,11 @@ text-decoration: none;
   .projectcardlink222a{
     background-color:red;
     color: white;
-    height: 45px;
-    width: 115px;
+    height: 35px;
+    width: 125px;
+    padding: 0px;
     text-decoration: none;
-    font-size: large;
+    font-size: medium;
     border-radius: 4px;
     display: flex;
     justify-content: center;
@@ -855,7 +1019,7 @@ text-decoration: none;
   .projectcardlink2230a{
     background-color:red;
     color: white;
-    height: 40px;
+    height: 37px;
     width: 115px;
     text-decoration: none;
     font-weight: 500;
@@ -865,7 +1029,6 @@ text-decoration: none;
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 20px 0;
     margin:10px auto;
 }
   .projectcardlink2230b{
@@ -902,11 +1065,15 @@ text-decoration: none;
     margin:10px auto;
 }
 
+
+
 /* read more */
+
 .readmorepage{
     position: absolute;
-    top:15vh;
+    top:12vh;
     width: 100vw;
+    
 }
 .cardformm{
     width: 80vw;
@@ -923,8 +1090,14 @@ text-decoration: none;
     top:15vh;
     width: 100vw;
 }
-
-
+.projectcardmaindivv {
+    margin-top: 5vh;
+    width: 100%;
+    
+}
+.projectcardmaindivv .card{
+    width: fit-content;
+}
 
 /* allprojects  */
 
@@ -1053,7 +1226,7 @@ text-decoration: none;
     align-items: center;
   }
   .searchdiv1{
-    padding: 25px 0px;
+    padding: 5px 0px;
    
     display: flex;
     justify-content: center;
@@ -1078,9 +1251,6 @@ text-decoration: none;
     justify-content: start;
     margin-right:20vw ;
 }
-.checkboxspan{
-
-}
 
 .checkboxinput{
     margin-right: 34vw;
@@ -1090,54 +1260,55 @@ text-decoration: none;
 
 
   .centerdiv{
-    width: 60vw;
+    width: 65vw;
     display: flex;
     align-items: center;
     justify-content: center;
     flex-direction: column;
     margin: auto;
   }
-  .bsk-container{
-    width: 20vw;
-    height: 20vh;
-  }
-  .bsk-btn{
-    width: 20vw;
-    height: 10vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 4px;
-  }
+ 
   .x-icon{
-    
-    margin: 4px;
-    
+    margin: 4px; 
   }
 
+
+
+/* media queries */
 
 @media only screen   
 and (min-device-width : 280px)   
 and (max-device-width : 699px)  
-{ .headerimage{
-    height: 80px;
-    width: auto;
-}
-header{
+    { 
+    .footer2maindiv{
+        width: 100vw;
+        height: 12vh;
+        padding-right: 0.1rem;
+        background-color: #B2A4FF;
+        display: flex;
+        justify-content: end;
+        align-items: center;
+        z-index: 1;
+        font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
+    }
+    .headerimage{
+        height: 12vh;
+        width: auto;
+    }
+    header{
     width: 100vw;
-}
-.headerdiv{
-    width: 60vw;
-    
-}
-.headerh3{
+    }
+    .headerdiv{
+    width: 60vw;   
+    }
+    .headerh3{
     font-size: 3vw;
     padding-right:0vw ;
     padding-left:1vw ;
     text-align: start;
     width: 100%;
     }
-.headerh1{
+    .headerh1{
     font-size: 5vw;
     padding-right: 0vw;
     padding-left: 1vw;
@@ -1164,73 +1335,166 @@ header{
         font-size: larger;
     }
     .footer2span1{
-        font-size: larger;
+        font-size: medium;
     }
-
-  
     .signupbutton{
         padding: 5px;
         width: 60%;
     }
-    
-
-}
-
-
-  
-  @media screen and (min-width: 480px) {
-  
-    form {
-      max-width: 480px;
+    .centerr{
+        width: 70vw;
+        font-size: small;
+        padding: 0px;
     }
-  
-  }
+    .centerrr{
+        width: 70vw;
+        font-size:small;
+        padding: 0px;
+        height: 60vh;
+    }
+    .centerfull{
+        width: 70vw;
+        padding: 0px;
+    }
+    .sidenavbar{
+        width: 30vw;
+    }   
+    .myprojectsdiv2{
+        font-size: 18px;
+    }
+    .allprojectsdiv{
+        margin: auto;
+    }
+    .text-left{
+        width: 100vw;
+    }
+    
+    .projectcardmaindiv{
+        width: 45vw;
+    }
+    .allprojectsdiv{
+        margin: 5vh 5vw;
+    }
+    .modal-content2 {
+        background-color: #fefefe;
+        margin: 10% auto; /* 10% from the top and centered */
+        padding:0 10px 0 0;
+        border: 1px solid #888;
+        width: 80%; /* Could be more or less, depending on screen size */
+        font-size: medium;
+      }
+      .modalptag{
+        position:absolute;
+        top:30vh;
+        left:10vw;
+        color: black;
+        
+        font-size: large;
+        font-family:Arial, Helvetica, sans-serif;
+        font-weight: 600;
+    }
+    .modal-content {
+        background-color: #fefefe;
+        margin: 40% auto; /* 15% from the top and centered */
+        padding:5px 10px 5px 20px;
+        border: 1px solid #888;
+        width: 90%; /* Could be more or less, depending on screen size */
+        font-size: large;
+      }
+    
+}
   
 @media only screen   
 and (min-device-width : 700px)   
 and (max-device-width : 1024px)  
-{ .headerimage{
+    {
+    .headerimage{
     height: 130px;
     width: auto;
-
-}
-header{
+    }
+    header{
     width: 100vw;
-}
-.headerdiv{
+    }
+    .headerdiv{
     width: 60vw;
     justify-content: center;
-}
-
-.headerh3{
+    }
+    .headerh3{
     font-size: 3vw;
     padding-right:0vw ;
     padding-left:1vw ;
     text-align: start;
     }
-.headerh1{
+    .headerh1{
     font-size: 4vw;
     padding-right: 0vw;
     padding-left: 1vw;
     text-align: start;
     }
-.headerspan2{
+    .headerspan2{
     font-size: 2vw;
-}
-
-}
+    }
+    .proflogininput{
+        padding-left: 10%;
+        padding-right: 10%px;
+    }
+    .centerr{
+        width: 40vw;
+        height: fit-content;
+    }
+    .centerrr{
+        width: 40vw;
+    }
+    .centerfull{
+        width: 40vw;
+    }
+    .sidenavbar{
+        width: 25vw;
+    }
+    .text-left{
+        width: 100vw;
+    }
+    .myprojectsdiv2{
+        font-size: 20px;
+    }
+    .projectcardmaindiv{
+        width: 31vw;
+    }
+    .allprojectsdiv{
+        margin: 5vh 0vw;
+    }
+    }
 @media only screen   
-and (min-width: 1030px)   
+and (min-width: 1025px)   
 and (max-width: 1366px)  
-{ 
+    { 
+        .proflogininput{
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .centerr{
+            width: 30vw;
+        }
+        .centerrr{
+            width: 30vw;
+        }
+        .centerfull{
+            width: 35vw;
+        }
+        
+    }
 
-} 
 @media only screen   
 and (min-width: 1370px)  
 and (max-width: 1605px)  
-{
-
-}
+    {
+        .centerr{
+            width: 30vw;
+        }
+        .centerrr{
+            width: 30vw;
+        }
+    }   
 
 @media only screen   
 and (orientation : landscape)   

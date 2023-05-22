@@ -8,8 +8,7 @@ function Accountpage(){
     return(
         <div>
             <Header />
-            <Link className='goback' to={`/`}><i class="fa-sharp fa-solid fa-arrow-left fa-x" style={{"margin-top":"30px"}}/></Link>
-
+            <Link className='goback' to={`/`}><i class="fa-sharp fa-solid fa-arrow-left fa-xl" style={{"margin-top":"30px"}}/></Link>
             <Studentlogin />
         </div>
    

@@ -1,23 +1,22 @@
 import dotenv from "dotenv"
 dotenv.config({path:"backend/config/.env"});
-
 import passport from "passport";
-
-
 import express from "express";
 
 const app = express();
 
+import querystring from 'querystring';
+import cors from 'cors';
+console.log(cors)
 
-import cors from "cors";
-const corsOptions ={
-    origin:'http://localhost:3000', 
-    credentials:true,            //access-control-allow-credentials:true
-    optionSuccessStatus:200,
- }
+const corsOptions = {
+    origin: 'http://localhost:3000', // use your actual domain name (or localhost), using * is not recommended
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
+    credentials: true
+  };
  
- app.use(cors(corsOptions))
- 
+ app.use(cors({corsOptions})); 
 
 import User from "./Views/user.js";
 import msRoute from "./Controllers/studentLoginController.js";
@@ -41,8 +40,29 @@ import connectDatabase from "./config/database.js"
 import authRouter from "./Views/msAuth.js";
 connectDatabase();
 
+const clientId = process.env.MICROSOFT_GRAPH_CLIENT_ID;
+console.log(clientId)
+const tenantId = process.env.MICROSOFT_GRAPH_TENANT_ID;
+const clientSecret = process.env.MICROSOFT_GRAPH_CLIENT_SECRET;
+
+const redirectUri = 'http://localhost:3000/studentallproject';
+const scopes = 'user.read';
+
 
 app.use("/user",User);
+
+app.get('/api/getToken', (req, res) => {
+    const authorizationUrl = `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/authorize`;
+    const queryParams = querystring.stringify({
+      response_type: 'code',
+      client_id: clientId,
+      redirect_uri: redirectUri,
+      scope: scopes,
+    });
+  
+    const authorizeUrl = `${authorizationUrl}?${queryParams}`;
+    res.redirect(authorizeUrl);
+  });
 
 
 const oneDay = 1000 * 60 * 60 * 24;

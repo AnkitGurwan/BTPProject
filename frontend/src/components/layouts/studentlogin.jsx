@@ -5,40 +5,25 @@ import * as Msal from 'msal';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-
-
 const Createaccount=()=>{
-    const {SigninStudent}=useContext(AuthContext);
-
+    const {SigninStudent,studentDetails}=useContext(AuthContext);
     const Navigate=useNavigate();
 
-    const Submit=async ()=> {
-      const x=await SigninStudent();
-            if (x===200) {
-             Navigate('/studentallproject')
-
-             toast.success('Login Success', {
-              position: toast.POSITION.TOP_CENTER
-          });
-            }
-          }
-      
+    const clickhandler=async ()=> {
+      await studentDetails();
+          }     
     return(
+        <div class="w-3/4 md:w:1/3 mx-auto text-center">
+            
+                <h2 className='font-semibold'>Click to login to your account</h2>
+                <hr/>
 
-
-<div class="centerdiv">
-    <br/>
-        <h2>Welcome to the Student Login</h2>
-        <hr/>
-
-  <div class="bsk-container">
-    <button class="bsk-btn bsk-btn-default" onClick={Submit}>
-      <object type="image/svg+xml" data="https://s3-eu-west-1.amazonaws.com/cdn-testing.web.bas.ac.uk/scratch/bas-style-kit/ms-pictogram/ms-pictogram.svg" class="x-icon"></object> 
-      <h5 style={{"margin":"4px"}}>Sign in with Microsoft</h5></button>
-  </div>
-
- 
-</div>
+                <div class="bsk-container w-3/4 md:1/2 mx-auto">
+                  <button class="bsk-btn w-full md:w-1/3 mx-auto p-2 rounded bsk-btn-default bg-gray-700 hover:bg-gray-800 text-white flex items-center" onClick={clickhandler}>
+                  <i class="fa-brands fa-windows text-2xl p-2 my-auto mx-2"></i>
+                  <h5 className='p-1 my-auto'>Microsoft Login</h5></button>
+                </div>
+        </div>
 )
 }
 export default Createaccount;

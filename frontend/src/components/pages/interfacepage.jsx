@@ -1,14 +1,13 @@
 import React from 'react';
 import Header from '../layouts/header';
-import Body from '../layouts/body';
+import Body from '../layouts/interface';
 
-function Main(){
+function Interfacepage(){
     return(
-        <div>
+        <div style={{"width":"100vw"}}>
             <Header />
             <Body />
         </div>
-   
     )
 }
-export default Main;
+export default Interfacepage;

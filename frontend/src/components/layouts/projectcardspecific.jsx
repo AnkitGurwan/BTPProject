@@ -1,18 +1,15 @@
 import React,{useContext,useEffect} from 'react';
 import { Link,useNavigate,useParams } from 'react-router-dom';
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import ItemContext from '../../context/project/ItemContext';
 import AuthContext from '../../context/authentication/AuthContext';
-
-
 
 function Projectcard(props){
     const {project}=props;
     const {deleteProject} = useContext(ItemContext);
     const navigate=useNavigate();
     const {downloadDetails,user,ownerdetails} = useContext(AuthContext);
-
     const params=useParams();
     const id=params.id;
 
@@ -25,8 +22,8 @@ function Projectcard(props){
 
     
 var modal = document.getElementById("myModal");
-
 // Get the button that opens the modal
+
 var btn = document.getElementById("myBtn");
 
 // Get the <span> element that closes the modal
@@ -53,7 +50,6 @@ window.onclick = function(event) {
 
 const click=()=>{}
 
-
     const clickHandler = async (e)=>{
         e.preventDefault();
         const x=await deleteProject(id);
@@ -63,53 +59,48 @@ const click=()=>{}
         toast.success('Deleted successfully', {
           position: toast.POSITION.TOP_CENTER
       });
-    }
-    else if(x===403)
-        {
+      }
+      else if(x===403)
+      {
           navigate('')
         toast.error('You cannot delete projects of others', {
           position: toast.POSITION.TOP_CENTER
       });
-    }
-  }
+      }
+      }
   
-  if(user)
-  var userEmail=user.email
- 
-  const download = async (e)=>{
-    e.preventDefault();
-    console.log("hii");
-  await downloadDetails(userEmail);
-  }
-
-    return(
-    <div className='projectcardmaindiv'>
-      
-      <button class="btn btn-primary" style={{"margin-left":"30vw","margin-bottom":"2vh"}} onclick={download}>Download List of Interested Students</button>
-        
-            <div class="card" style={{width:"auto",height:"auto"}}>
-            <div class="card-body">
-                <h1 class="card-title">{project.title}</h1>
-                <h3 class="card-subtitle mb-2 text-muted">{project.co_supervisor}<h6>(co-supervisor)</h6></h3>
-                <p class="card-text">{project.brief_abstract}</p>
-                <p class="card-text"><h4>Specialisation</h4>{project.specialization}</p>
-                <h6 class="card-title">Created on {project.creation_date} </h6>
-                <h6 class="card-title">Created at {project.creation_time} </h6>
-                <button id="myBtn" className='projectcardlink22' onclick={click}>Delete</button>
-            </div>
-            {/* modal */}
-                
-            <div id="myModal" class="modal">
-                    <div class="modal-content">
-                    <span class="close">&times;</span>
-                    <p className='modalp'>Are you sure you want to delete? <Link className='projectcardlink22a' onClick={clickHandler}>Delete</Link></p>
-                </div>
-                </div>
-        </div>
-    </div>
+    if(user)
+    var userEmail=user.email
+  
     
 
-    )}
+    return(
+    <div className='projectcardmaindivv'>
+            
+            <div class="card" style={{width:"auto",height:"auto","padding-left":"1rem","backgroundColor":"whitesmoke"}}>
+              <div class="card-body" style={{"display":"flex","flexDirection":"column","alignItems":"start","padding":"1rem"}}>
+                <h2 class="card-title pb-3"><i class="fa-solid fa-book text-3xl" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>{project.title}</h2>
+                
+                <h4 class="card-subtitle mb-1 text-muted pb-2" style={{}}><i class="fa-solid fa-user text-2xl" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>{project.co_supervisor}<h6>(co-supervisor)</h6></h4>
+                <p className='pb-2' style={{"textAlign":"start"}}>{project.brief_abstract}</p>
+                <p class="card-text pb-2" style={{"display":"flex","flexDirection":"column","alignItems":"start"}}><h5 className='flex items-center'><span class="material-symbols-outlined pr-1">
+                school
+                </span><div>Specialisation</div></h5>{project.specialization}</p>
+                <h6 class="card-title ">Created on {project.creation_date} </h6>
+                <h6 class="card-title pb-0">Created at {project.creation_time} </h6>
+                <button id="myBtn" className='projectcardlink22' onclick={click}>Delete</button>
+              </div>
+            {/* modal */}
+                
+              <div id="myModal" class="modal">
+                <div class="modal-content">
+                  <span class="close">&times;</span>
+                  <p className='modalp'>Are you sure you want to delete? <Link className='projectcardlink22a' onClick={clickHandler}>Delete</Link></p>
+                </div>
+              </div>
+            </div>
+      </div>
 
+)};
 
-export default Projectcard
+export default Projectcard;
