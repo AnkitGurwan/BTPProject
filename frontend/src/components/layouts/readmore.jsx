@@ -27,11 +27,11 @@ const Specificprojectcard=()=> {
      return(
         <div className='readmorepage'>
           <br/>
-          <div className="flex fixed">
-            <Link className='goback' to={`/owner`}><i class="fa-sharp fa-solid fa-arrow-left fa-2xl"></i></Link>
+          <div className="flex fixed ml-1">
+            <Link className='goback' to={`/owner`}><i class="fa-sharp fa-solid fa-arrow-left fa-lg"></i></Link>
            
             </div>
-          <div className='allprojectsdivread'>{items.filter((project)=>project._id===id).map((projects,i)=>{return (<Projectcardspecific key={i} project={projects}/>)})}</div>    
+          <div className='allprojectsdivread mt-8'>{items.filter((project)=>project._id===id).map((projects,i)=>{return (<Projectcardspecific key={i} project={projects}/>)})}</div>    
       </div>
     ) 
 };

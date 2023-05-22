@@ -41,26 +41,26 @@ const NewProject=()=> {
   
         return (
           <div class=" px-0 py-4" style={{"position":"absolute","width":"100vw","top":"12vh","left":"0",}}>
-            <div className="flex">
-              <Link className='goback' to={`/owner`}><i class="fa-sharp fa-solid fa-arrow-left fa-2xl"/></Link>
-              <div class="text-2xl flex items-center font-bold border-b-2 border-gray-300 " style={{"marginLeft":"32%"}}>
+            <div className="flex ml-1">
+              <Link className='goback' to={`/owner`}><i class="fa-sharp fa-solid fa-arrow-left fa-lg"/></Link>
+              <div class="text-2xl flex items-center font-bold mx-auto pr-16 md:pr-32">
               <span class="material-symbols-outlined px-2 ">
                 edit_note
               </span>
-              <div>Update Project</div>
+              <div className="border-b-2 border-gray-300 px-2">Update Project</div>
               </div>
 
             </div>
               
 
-              <form class="max-w-3xl mx-auto shadow-xl rounded-lg px-8 p-4 pb-3 mb-2 mt-4 " onSubmit={submit}>
-                <div className="grid grid-cols-2 gap-4">
-                <div class="mb-4">
-                  <label class="block text-gray-700 font-bold mb-2" for="username">
+              <form class="w-4/5 md:w-2/3 mx-auto shadow-xl rounded-lg px-8 p-4 pb-3 mb-2 mt-4 " onSubmit={submit}>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+                <div class="mb-2 mr-0 md:mr-24">
+                  <label class="block text-gray-700 font-bold mb-1 md:mb-2" for="username">
                     Project Title:
                   </label>
                   <input
-                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="appearance-none border text-sm md:text-md rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
                     type="text"
                     placeholder="Enter project title"
@@ -70,25 +70,25 @@ const NewProject=()=> {
                     value={itemData.title}
                   />
                 </div>
-                <div>
-                  <label class="block text-gray-700 font-bold mb-2" for="email">
+                <div className="mb-2 ">
+                  <label class="block text-gray-700 font-bold mb-1 md:mb-2" for="email">
                   Brief Abstract:
                   </label>
                   <textarea id="message"
                             rows="5" 
-                            class="block w-full text-m text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-3 py-2" 
+                            class="block w-full text-sm md:text-md text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-3 py-2" 
                             placeholder="Write project details..."
                             name="abstract"
                             onChange={onChangeHandler}
                             value={itemData.abstract}
                     ></textarea>
                 </div>
-                <div>
-                  <label class="block text-gray-700 font-bold mb-2" for="confirm-password">
+                <div className="mb-2 mr-0 md:mr-24">
+                  <label class="block text-gray-700 font-bold mb-1 md:mb-2" for="confirm-password">
                     Co-Supervisor:
                   </label>
                   <input
-                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="appearance-none border rounded text-sm md:text-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="confirm-password"
                     type="text"
                     placeholder="Name of Co-Supervisor"
@@ -97,12 +97,12 @@ const NewProject=()=> {
                     value={itemData.cosupervisor}
                   />
                 </div>
-                <div>
-                  <label class="block text-gray-700 font-bold mb-2" for="password">
+                <div className="mb-2">
+                  <label class="block text-gray-700 font-bold mb-1" for="password">
                   Specialization:
                   </label>
                   <input
-                    class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="appearance-none border text-sm md:text-md rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
                     placeholder="Enter the specialization"
                     name="specialization"
