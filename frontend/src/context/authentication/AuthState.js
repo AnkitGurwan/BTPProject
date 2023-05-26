@@ -1,8 +1,5 @@
 import { useState } from "react";
 import AuthContext from "./AuthContext";
-import {useLocation, useNavigate } from 'react-router-dom';
-import * as Msal from 'msal'; 
-import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch } from "react-redux";
 

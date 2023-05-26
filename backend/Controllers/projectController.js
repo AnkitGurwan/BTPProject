@@ -438,9 +438,9 @@ const downLoadDetails = async (req, res, next) => {
     var down = __dirname + `/public/student_data.xlsx`;
     XLSX.utils.book_append_sheet(wb, ws, "Sheet 1");
     XLSX.writeFile(wb, down);
-    res.download(down);
-    console.log("ready to download")
-    res.status(200).send(details);
+    res.status(200).download(down);
+    console.log("ready to download",details)
+    // res.status(200).json(details);
 }
 
 
