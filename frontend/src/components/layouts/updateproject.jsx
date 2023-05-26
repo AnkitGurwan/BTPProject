@@ -89,7 +89,7 @@ const NewProject=()=> {
                   </label>
                   <input
                     class="appearance-none border rounded text-sm md:text-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                    id="confirm-password"
+                    id="cosupervisor"
                     type="text"
                     placeholder="Name of Co-Supervisor"
                     name="cosupervisor"
