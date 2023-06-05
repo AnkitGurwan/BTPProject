@@ -12,6 +12,7 @@
     "bootstrap": "^5.2.3",
     "capitalize": "^2.0.4",
     "ejs": "^3.1.8",
+    "lottie-react": "^2.4.0",
     "msal": "^1.4.17",
     "overlay-navbar": "^1.2.3",
     "react": "^18.2.0",

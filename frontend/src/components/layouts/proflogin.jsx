@@ -20,6 +20,8 @@ const Body2 = ()=>{
     }
 
     const loginSubmitHandler = async (event) => {
+        document.getElementById('myButton').classList.add('animate-pulse');
+        
         event.preventDefault();
         const x=await loginUser(user.email,user.password)
     
@@ -29,11 +31,13 @@ const Body2 = ()=>{
         });
           navigate('/owner');
           setUser({email:"", password:""});  
+          document.getElementById('myButton').classList.remove('animate-pulse');
         }
         else {
           toast.error('Invalid email or password', {
           position: toast.POSITION.TOP_CENTER
         });
+        document.getElementById('myButton').classList.remove('animate-pulse');
         }
     }
     
@@ -61,11 +65,11 @@ const Body2 = ()=>{
                   
                   <form onSubmit={loginSubmitHandler} >
                     <div class="form-outline mb-4" className='proflogininput' >
-                      <input type="email" id="loginName" class="form-control"  placeholder="Email (i.e. 123@gmail.com)" required autoFocus name="email" value={user.email} onChange={onChangeHandler}/>
+                      <input type="email" id="loginName" class="form-control"  placeholder="Email (i.e. 123@gmail.com)" autoFocus name="email" value={user.email} onChange={onChangeHandler}/>
                     </div>
           
                     <div class="form-outline mb-4" className='proflogininput' >
-                      <input type="password" id="loginPassword" class="form-control" placeholder="Password"  required  name="password" value={user.password} onChange={onChangeHandler}/>
+                      <input type="password" id="loginPassword" class="form-control" placeholder="Password"    name="password" value={user.password} onChange={onChangeHandler}/>
                     </div>
 
                     <div class="row mb-4" className='profloginlink'>
@@ -74,7 +78,7 @@ const Body2 = ()=>{
                       </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary btn-block mb-4 buttonmodify" id='proflogin'>Sign in</button>
+                    <button id='myButton' type="submit" class="btn btn-primary btn-block mb-4 w-full">Sign in</button>
                   
                   </form>
                 </div>

@@ -10,6 +10,7 @@ const Createaccount=()=>{
     const Navigate=useNavigate();
 
     const clickhandler=async ()=> {
+      document.getElementById('myButton').classList.add('animate-pulse');
       await studentDetails();
           }     
     return(
@@ -19,7 +20,7 @@ const Createaccount=()=>{
                 <hr/>
 
                 <div class="bsk-container w-3/4 md:1/2 mx-auto">
-                  <button class="bsk-btn w-full md:w-1/3 mx-auto p-2 rounded bsk-btn-default bg-gray-700 hover:bg-gray-800 text-white flex items-center" onClick={clickhandler}>
+                  <button id='myButton' class="bsk-btn w-full md:w-1/3 mx-auto p-2 rounded bsk-btn-default bg-gray-700 hover:bg-gray-800 text-white flex items-center" onClick={clickhandler}>
                   <i class="fa-brands fa-windows text-2xl p-2 my-auto mx-2"></i>
                   <h5 className='p-1 my-auto'>Microsoft Login</h5></button>
                 </div>
