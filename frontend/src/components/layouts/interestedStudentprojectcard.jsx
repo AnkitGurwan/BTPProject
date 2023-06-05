@@ -5,35 +5,26 @@ import Projectcard from './projectcard'
 
 const Createaccount=()=>{
     const {itemsspecific,Projectspecific} = useContext(ItemContext);
-  
     const total=itemsspecific.length;
+    const[search,setSearch]=useState("");
 
-    const getItem=async ()=>{
-        
-        await Projectspecific();
-        
-        
+    const getItem=async ()=>{        
+        await Projectspecific();  
       }
       useEffect(()=>{
         getItem();
       },[]) 
 
-      const[search,setSearch]=useState("");
-    
-    const detectChanges = async(e)=>{
-        
-      setSearch(e.target.value);   
-  }
+    const detectChanges = async(e)=>{        
+    setSearch(e.target.value);   
+    }
 
-    
     // const project=user.projects_posted;
     // if(project)
     // console.log(project)
     
     return(
-             
       <div class="container-fluid1 text-center">    
-        
           <div class="sidenavbar">
           <Link className='myprojectsdivb' to={``}>
             

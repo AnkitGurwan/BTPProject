@@ -6,8 +6,8 @@ function Projectcard(props){
    
     return(
     <div className='projectcardmaindiv'>
-            <div class="card">
-                <div class="card-body text-center w-full">
+            <div class="border-2 rounded-lg bg-gray-100">
+                <div class="card-body text-center  py-3 w-full">
                     <h4 class="card-title pb-2" style={{"textDecoration":"underline","fontSize":"20px"}}>{project.title}</h4>
                     <h6 class="card-subtitle pb-2 text-muted" style={{"display":"flex","flexDirection":"column","alignItems":"center","textAlign":"center"}}>{project.co_supervisor}<h6 className='text-sm'>(co-supervisor)</h6></h6>
                     <p class="card-text text-sm flex flex-col text-center px-2">{project.brief_abstract.slice(0,100)}<a href={`mainpage/${project._id}`} className='text-sm font-medium' style={{"textDecoration":"none"}}>...read more</a></p>

@@ -21,7 +21,7 @@ function Footer2(){
                 <div className='footer2div1'>Indian Institute of Technology</div>
                 <div className='footer2div2'>Guwahati</div>
             </span> 
-            <i className='footer2i' class="fa-solid fa-right-from-bracket"></i> 
+            <i className='footer2i' class="fa-solid fa-right-from-bracket font-bold text-xl"></i> 
             <span className='footer2span2'>
                 <Link className='footer2a' to={'/'} onClick={newfunc} >LogOut</Link>
             </span>

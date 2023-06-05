@@ -1,4 +1,4 @@
-import { useState } from "react";
+import react, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { setSpecificProjects, setAllProjects, delProject, addProject, editProject } from "../../Redux/allProjects/allprojectsSlice";
 import { setAllStudents } from "../../Redux/student/studentSlice"
@@ -40,7 +40,7 @@ const ItemState=(props)=>{
         dispatch(setAllProjects(json));
 
        
-        return 200;
+        return response.status;
     };
 
     const Projectspecific=async()=>{  
@@ -91,14 +91,14 @@ const ItemState=(props)=>{
             // setUser(user.concat(json));
     };
 
-    const createStudent = async (user1email,user1name,user1roll,user2email,user2name,user2roll,pId) => {
+    const createStudent = async (userEmail,userName,userRoll) => {
         console.log("step2")
         const response = await fetch(`${url}/project/newstudent`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify({ user1email,user1name,user1roll,user2email,user2name,user2roll,pId})
+            body: JSON.stringify({ userEmail,userName,userRoll})
         });
         console.log("step6")
         
@@ -143,6 +143,7 @@ const ItemState=(props)=>{
                     'Content-Type': "application/json"
                 }
             })
+            console.log(response)
             
             // const stud={user,email};
             // if(response.status===200)
@@ -172,6 +173,8 @@ const ItemState=(props)=>{
                 })            
             const json=await response.json()
             setDetails(json)    
+            return response.status;
+
             // console.log("useritem:- ",json)
     };
 
