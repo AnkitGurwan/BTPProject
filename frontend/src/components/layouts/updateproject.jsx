@@ -53,14 +53,14 @@ const NewProject=()=> {
             </div>
               
 
-              <form class="w-4/5 md:w-2/3 mx-auto shadow-xl rounded-lg px-8 p-4 pb-3 mb-2 mt-4 " onSubmit={submit}>
+              <form class="w-4/5 md:w-2/3 mx-auto shadow-xl rounded-lg px-8 p-4 pb-3 mb-2 mt-4 bg-gray-100 border-4" onSubmit={submit}>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
                 <div class="mb-2 mr-0 md:mr-24">
                   <label class="block text-gray-700 font-bold mb-1 md:mb-2" for="username">
                     Project Title:
                   </label>
                   <input
-                    class="appearance-none border text-sm md:text-md rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="appearance-none border-2 text-sm md:text-md rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none"
                     id="username"
                     type="text"
                     placeholder="Enter project title"
@@ -76,7 +76,7 @@ const NewProject=()=> {
                   </label>
                   <textarea id="message"
                             rows="5" 
-                            class="block w-full text-sm md:text-md text-gray-700 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-500 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 px-3 py-2" 
+                            class="block w-full text-sm md:text-md text-gray-700 bg-gray-50 rounded-lg border-2 px-3 py-2" 
                             placeholder="Write project details..."
                             name="abstract"
                             onChange={onChangeHandler}
@@ -88,7 +88,7 @@ const NewProject=()=> {
                     Co-Supervisor:
                   </label>
                   <input
-                    class="appearance-none border rounded text-sm md:text-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="appearance-none border-2 rounded text-sm md:text-md w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     id="cosupervisor"
                     type="text"
                     placeholder="Name of Co-Supervisor"
@@ -102,7 +102,7 @@ const NewProject=()=> {
                   Specialization:
                   </label>
                   <input
-                    class="appearance-none border text-sm md:text-md rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                    class="appearance-none border-2 text-sm md:text-md rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                     type="text"
                     placeholder="Enter the specialization"
                     name="specialization"
