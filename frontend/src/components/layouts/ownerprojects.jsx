@@ -22,7 +22,6 @@ const Createaccount=()=>{
 
     const getItem=async ()=>{        
         const x=await Projectspecific(); 
-        console.log("x",x)
         if(x===200)setLoading(false);
     };
     useEffect(()=>{
@@ -75,37 +74,44 @@ const Createaccount=()=>{
     // }
 
 
-    // Get the button that opens the modal
+        
+var modal = document.getElementById("myModal");
+// Get the button that opens the modal
 
-    var btn = document.getElementById("myBtn");
+var btn = document.getElementById("myBtn");
 
-    // Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close2")[0];
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
 
-    // When the user clicks on the button, open the modal
-    if(btn){
-    btn.onclick = function() {
-      modal.style.display = "block";
-    }}
+// When the user clicks on the button, open the modal
+if(btn){
+btn.onclick = function() {
+  modal.style.display = "block";
+}}
 
-    // When the user clicks on <span> (x), close the modal
-    if(span){
-    span.onclick = function() {
-      modal.style.display = "none";
-    }}
+// When the user clicks on <span> (x), close the modal
+if(span){
+span.onclick = function() {
+  modal.style.display = "none";
+}}
 
-    // When the user clicks anywhere outside of the modal, close it
-    window.onclick = function(event) {
-      if (event.target == modal) {
-        modal.style.display = "block";
-      }
-    }
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+  if (event.target == modal) {
+    modal.style.display = "none";
+  }
+}
 
     const download = async (e)=>{
       console.log("kk")
       e.preventDefault();
       const email="riyehok530@razuz.com"
-      await downloadDetails(email);
+      // await downloadDetails(email);
+      window.open(
+        'http://localhost:5000/project/intrestedpeople/riyehok530@razuz.com',
+        '_blank' // <- This is what makes it open in a new window.
+        );
+      // window.location.href="http://localhost:5000/project/riyehok530@razuz.com"
     }
   
     return(             
@@ -128,12 +134,12 @@ const Createaccount=()=>{
             </div> */}
            <div class="text-left" id="text-left">
               {/* navbar 1   */}
-            <nav class="bg-gray-900" style={{"paddingRight":"20px"}}>
+            <nav class="backgr" style={{"paddingRight":"20px"}}>
               <div class="max-w-7xl mx-auto px-2 sm:px-10 lg:px-200">
                 <div class="relative flex items-center justify-between h-16">
                   <div class="flex items-center justify-start" style={{"marginLeft":"7vw"}}>
                       <div class="input-group" className='searchdiv1'>
-                      <i class="fas fa-search text-xl" style={{"color":"white","paddingRight":"15px","height":"100%"}}></i>
+                      <i class="fas fa-search text-xl h-full pr-4 "></i>
                         <div class="form-outline">
                           
                           <input id="search-input" type="search"  class="form-control" name='search' placeholder="Search by Title name" value={search} onChange={detectChanges} style={{"width":"30vw","textAlign":"center"}} />
@@ -141,8 +147,8 @@ const Createaccount=()=>{
                       </div>
                   </div>
                   <div class="absolute inset-y-0 right-0 hidden md:flex  items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                    <div class="text-white hover:text-white px-3 py-2 rounded-md text-xl font-medium" style={{"textDecoration":"none"}}><i class="fa-solid fa-user text-md" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>My projects</div>
-                    <Link to={`/mainpage`} class="text-gray-500 hover:text-white px-3 py-2 rounded-md text-xl font-x-large" style={{"textDecoration":"none"}}>All projects</Link>
+                    <div class="text-gray-800 px-3 py-2 rounded-md text-xl font-bold" style={{"textDecoration":"none"}}><i class="fa-solid fa-user text-md" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>My Projects</div>
+                    <Link to={`/mainpage`} class="text-gray-700 hover:text-gray-500 px-3 py-2 no-underline rounded-md text-xl font-x-large" >All Projects</Link>
                   </div>
                   {mobileMenu?(<div className='flex md:hidden'  onClick={()=>setMobileMenu(false)}>
                             <span class="material-symbols-outlined text-white text-xl ml-12 mr-2">
@@ -163,17 +169,18 @@ const Createaccount=()=>{
             </nav>
 
             
-            {loading?(<div class="flex items-center justify-center h-screen">
-              <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
-              </div>
-            ):
-            <div>
+            
               <div className='allprojectslinkdiv'>
                 <div id="myBtn" className='allprojectslink'>
                   <h1 className='p-0 md:p-1'>+ </h1>NEW PROJECT
                 </div>
               </div>
 
+              {loading?(<div class="flex items-center justify-center h-screen">
+              <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+              </div>
+            ):
+            <div>
               <div className='w-1/3 md:w-48  ' style={{"display":"flex","marginLeft":"5vw","fontWeight":"600","position":"absolute","top":"15vh"}}>
               <div className='text-sm md:text-lg pr-2' style={{"textAlign":"center","fontWeight":"600"}} >Download List of Interested Students</div>
               <i class="fa-solid fa-download text-4xl" onClick={download} style={{"display":"flex","flexDirection":"column","justifyContent":"center","padding":"0px","cursor":"pointer"}}></i>
@@ -194,7 +201,7 @@ const Createaccount=()=>{
             {/* modal on new project */}
             <div id="myModal" class="modal2">
                 <div class="modal-content2">
-                  <span class="close2" style={{"justify-content":"start","height":"50px"}}>&times;</span>
+                  <span class="close" style={{"justify-content":"start","height":"50px"}}>&times;</span>
                   <form class="w-100 mx-auto bg-white px-8 mb-4" onSubmit={submit}>
                     <div class="mb-4 ">
                       <label class="block text-gray-600 font-bold mb-2 text-sm d-flex justify-content-start items-center" for="username">

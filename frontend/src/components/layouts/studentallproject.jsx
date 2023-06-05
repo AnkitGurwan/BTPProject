@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useSelector } from 'react-redux';
 
 const Createaccount=(req,res)=>{
-  const {allProjects,logout,getAllStudent} = useContext(ItemContext);
+  const {allProjects,logout,getAllStudent,createStudent} = useContext(ItemContext);
   const {getToken} = useContext(AuthContext);
   const students = useSelector(state => state.student.allStudents);
   const location=useLocation();
@@ -38,7 +38,7 @@ const Createaccount=(req,res)=>{
 
   const partner=students.filter((student)=>student.partner===pId[0]).map((student,i)=>{flag2=1;return student});
 
-  const funcAllowed= async ()=>{
+  const funcAllowed= () => {
     if(localStorage.getItem('roll'))
     {
       if(210103000<localStorage.getItem('roll') && localStorage.getItem('roll')<210103140){
@@ -59,25 +59,31 @@ const Createaccount=(req,res)=>{
       }));
     } 
   }
+
+  var count="";
+  var flag=0;
+  const user=localStorage.getItem('id');
+  const userName=localStorage.getItem('name');
+  const roll=localStorage.getItem('roll');
  
   const getItem=async ()=>{
       await allProjects();
       if(localStorage.getItem('name')===null && code)
       await getToken(code);
       await getAllStudent(); 
-      await funcAllowed();
+      if(localStorage.getItem('name'))
+      await createStudent(localStorage.getItem('id'),localStorage.getItem('name'),localStorage.getItem('roll'));
+      funcAllowed();
   }
   
-  var count="";
-  var flag=0;
-  const user=localStorage.getItem('id');
-  const userName=localStorage.getItem('name');
+
 
   {items.filter((project)=>project.intrestedPeople.map((emailcheck)=>{if(emailcheck===user){count=project._id;flag=1}}))}
   
       
   useEffect(()=>{
         getItem();
+        
         document.body.classList.add("disable-scrolling");
     },[]);    
 
@@ -135,7 +141,7 @@ window.addEventListener("click", function(event) {
         </div>
         ):<div>
         {allowed?(<div className='studentallprojectdivmain'>
-            <nav class="bg-gray-900 pr-0 md:pr-12">
+            <nav class="bg-gray-800 py-1 pr-0 md:pr-12">
                   <div class="max-w-7xl mx-auto px-0 lg:px-200">
                     <div class="relative flex items-center justify-between h-12">
                       <div class="flex items-center justify-start ml-2 md:ml-12">
@@ -143,14 +149,14 @@ window.addEventListener("click", function(event) {
                           <i class="fas fa-search text-xl" style={{"color":"white","paddingRight":"15px","height":"100%"}}></i>
                             <div class="form-outline">
                               
-                              <input id="search-input" type="search"  class="form-control" name='search' placeholder="Search by Title name" value={search} onChange={detectChanges} style={{"width":"30vw","textAlign":"center"}} />
+                              <input id="search-input" type="search"  class="form-control border-none" name='search' placeholder="Search by Title name" value={search} onChange={detectChanges} style={{"width":"30vw","textAlign":"center"}} />
                             </div>
                           </div>
                       </div>
                       <div class=" absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-4 sm:pr-0">
                        
-                      {flag===-1?<div class="loader"></div>:flag===0?(<div className='w-28 px-1 md:w-40 text-xs md:text-lg py-1 md:py-1' style={{"backgroundColor":"red","textAlign":"center","borderRadius":"3px","color":"white","marginRight":"1vw","fontWeight":"600"}}>Not Registered</div>):
-                       (<div className='w-28 px-1 md:w-32 text-xs md:text-lg md:py-1' style={{"backgroundColor":"green","textAlign":"center","borderRadius":"3px","fontSize":"larger","color":"white","marginRight":"1vw","fontWeight":"600"}}>Registered</div>)}
+                      {flag===-1?<div class="loader"></div>:flag===0?(<div className='w-28 px-1 md:w-36 text-xs md:text-lg py-1 md:py-1' style={{"backgroundColor":"red","textAlign":"center","borderRadius":"3px","color":"white","marginRight":"1vw","fontWeight":"600"}}>Not Registered</div>):
+                       (<div className='w-28 px-1 md:w-32 text-xs md:text-md md:py-1' style={{"backgroundColor":"green","textAlign":"center","borderRadius":"3px","fontSize":"larger","color":"white","marginRight":"1vw","fontWeight":"600"}}>Registered</div>)}
 
                       {flag===0?(
                         <div className='hidden md:flex'>
@@ -159,11 +165,11 @@ window.addEventListener("click", function(event) {
                         </div>
                       ):(
                         <div className='hidden md:flex'>
-                          <a href={`/studentallproject/${count}`} class="text-gray-500 hover:text-white px-3 py-2 rounded-md text-xl font-x-large" style={{"textDecoration":"none"}}><i class="fa-solid fa-book text-md" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>My Project</a>
-                          <a href='#partner' class="text-gray-500 hover:text-white px-3 no-underline py-2 rounded-md text-xl font-x-large z-10" style={{"textDecoration":"none","cursor":"pointer"}}><i class="fa-solid fa-user text-md" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>My Partner</a>
+                          <a href={`/studentallproject/${count}`} class="text-gray-400 hover:text-white px-3 py-2 rounded-md text-lg font-x-large" style={{"textDecoration":"none"}}><i class="fa-solid fa-book text-md" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>My Project</a>
+                          <a href='#partner' class="text-gray-400 hover:text-white px-3 no-underline py-2 rounded-md text-lg font-x-large z-10" style={{"textDecoration":"none","cursor":"pointer"}}><i class="fa-solid fa-user text-md" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>My Partner</a>
                       </div>
                       )}
-                      (<a href='#course' class="hidden md:flex text-gray-500 hover:text-white px-0 md:px-3 py-2 rounded-md text-xs  md:text-xl " style={{"textDecoration":"none" }}>About Course</a>)
+                      <a href='#course' class="hidden md:flex text-gray-400 hover:text-white px-2 md:px-3 py-2 rounded-md text-xs  md:text-lg " style={{"textDecoration":"none" }}>About Course</a>
                       
                       {mobileMenu?(<div className='flex md:hidden'  onClick={()=>setMobileMenu(false)}>
                       <span class="material-symbols-outlined text-white text-xl ml-12 mr-2">
@@ -187,7 +193,7 @@ window.addEventListener("click", function(event) {
                   </div>
                 </nav>
 
-                <div class="split px-8 py-2 bg-gray-800 text-white"><div><h1 class="heading  light text-2xl md:text-4xl">Welcome,</h1><h1 class="heading bold light text-2xl md:text-4xl">{userName}</h1><p class="text-lg md:text-xl">B.Tech. in Mechanical Engineering</p></div></div>
+                <div class="split px-12 py-1 bg-gray-800 text-white"><div><h1 class="heading  light text-2xl md:text-3xl">Welcome,</h1><h1 class="heading bold light text-2xl md:text-3xl">{userName}</h1><p class="text-lg md:text-lg">B.Tech. in Mechanical Engineering</p></div></div>
 
                 {/* description */}
                 <div class="container card w3-white" style={{"marginTop":"3vh"}}>
@@ -288,11 +294,15 @@ window.addEventListener("click", function(event) {
         <div class="_feedback_container_1ob32_125 pl-4 md:pl-24 lg:pl-48 bg-gray-400" style={{"height":"15vh","width":"100vw","margin":"auto","display":"flex","alignItems":"center"}}><svg style={{"height":"30px","paddingRight":"10px"}} class="MuiSvgIcon-root _add__comment_1ob32_146" focusable="false" viewBox="0 0 24 24" aria-hidden="true"><path d="M22 4c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h14l4 4V4zm-2 13.17L18.83 16H4V4h16v13.17zM13 5h-2v4H7v2h4v4h2v-4h4V9h-4z"></path></svg>
         <p class="_para__feedback_1ob32_130 text-xs md:text-sm lg:text-lg flex-wrap" style={{"marginBottom":"0.5vw","display":"flex","alignContent":"center"}} hover={{"textDecoration":"underline"}}>We value your opinion, please take a moment to fill out our   <Link className='px-1 ' to={`/feedback`}  style={{"textDecoration":"none"}}> feedback form </Link>   to help us improve.</p>
        </div>
-       </div>):(<div className="spinner-container">
-      <div className="loading-spinner">
-      </div>
-    </div>
-)}
+       </div>):<div class="centerrrr">
+          <div class="max-w-md bg-white rounded-lg shadow-md p-8">
+              <h1 class="text-3xl font-bold mb-4">404</h1>
+              <p class="text-lg text-gray-700 mb-6">Oops! The page you're looking for could not be accessed by you.</p>
+              <div class="bg-blue-500 text-center text-white text-xl font-bold py-2 px-4 rounded">
+                  You are not part of this Course.
+              </div>
+        </div>
+    </div>}
 
           
         </div>}
