@@ -1,4 +1,4 @@
-import React,{useContext,useEffect} from 'react';
+import React,{useContext,useEffect,useState} from 'react';
 import { Link,useNavigate,useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -9,12 +9,15 @@ function Projectcard(props){
     const {project}=props;
     const {deleteProject} = useContext(ItemContext);
     const navigate=useNavigate();
-    const {downloadDetails,user,ownerdetails} = useContext(AuthContext);
+    const {user,ownerdetails} = useContext(AuthContext);
+    const [loading,setLoading]=useState(true);
     const params=useParams();
     const id=params.id;
 
     const getItem=async ()=>{
-      await ownerdetails(id);
+      const x = await ownerdetails(id);
+      console.log("x",x)
+      if(x===200)setLoading(false);
     }
     useEffect(()=>{
       getItem();
@@ -68,21 +71,22 @@ const click=()=>{}
       });
       }
       }
-  
-    if(user)
-    var userEmail=user.email
-  
-    
 
     return(
     <div className='projectcardmaindivv'>
+       {loading?(<div class="flex items-center justify-center h-screen">
+              <div class="animate-spin rounded-full h-16 w-16 border-t-2 border-b-2 border-gray-900"></div>
+              </div>
+            ):
             
-            <div class="card p-1" style={{width:"auto",height:"auto","backgroundColor":"whitesmoke"}}>
+            <div class="px-6 py-3 rounded-lg border-4 bg-gray-100" style={{"width":"auto","height":"auto"}}>
               <div class="card-body" style={{"display":"flex","flexDirection":"column","alignItems":"start"}}>
                 <h2 class="card-title pb-2"><i class="fa-solid fa-book text-lg" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>{project.title}</h2>
                 
-                <h4 class="card-subtitle text-muted pb-2 text-lg" style={{}}><i class="fa-solid fa-user text-lg" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>{project.co_supervisor}<h6 className='text-sm'>(co-supervisor)</h6></h4>
-                <p className='pb-2 text-start'>{project.brief_abstract}</p>
+                <h4 class="card-subtitle text-muted text-lg" style={{}}><i class="fa-solid fa-user text-lg" style={{"backgroundColor":"transparent","paddingRight":"0.5rem"}}></i>{project.co_supervisor}<h6 className='text-sm'>(co-supervisor)</h6></h4>
+                <hr className='w-full'/>
+                <p className='text-start'>{project.brief_abstract}</p>
+                <hr className='w-full'/>
                 <p class="card-text pb-2 flex flex-col"><h5 className='flex items-center mb-0'><span class="material-symbols-outlined pr-1">
                 school
                 </span><div className='text-lg m-0 '>Specialisation</div></h5><div className='text-sm pl-2'>{project.specialization}</div></p>
@@ -98,7 +102,7 @@ const click=()=>{}
                   <p className='modalp'>Are you sure you want to delete? <Link className='projectcardlink22a' onClick={clickHandler}>Delete</Link></p>
                 </div>
               </div>
-            </div>
+            </div>}
       </div>
 
 )};
