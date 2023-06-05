@@ -106,13 +106,13 @@ const newproject = async (req, res) => {
 
 const newStudent = async (req, res) => {
 
-    const isvaliD1 = await Student.findOne({ email: req.body.user1email });
-    const isvaliD2 = await Student.findOne({ email: req.body.user2email });
+    const isValid = await Student.findOne({ email: req.body.userEmail });
+    console.log("user",isValid)
     console.log("step3")
 
-    if(!isvaliD1){
+    if(!isValid){
         console.log("step4")
-    await Student.create({
+        await Student.create({
         name: req.body.user1name,
         email: req.body.user1email,
         rollNum: req.body.user1roll,
@@ -120,16 +120,7 @@ const newStudent = async (req, res) => {
         partner: '000000000000000000000000',
         is_banned: false,   
     })}
-    if(!isvaliD2){
-    await Student.create({
-        name: req.body.user2name,
-        email: req.body.user2email,
-        rollNum: req.body.user2roll,
-        projectName: '000000000000000000000000',
-        partner: '000000000000000000000000',
-        is_banned: false,   
-    })
-    }
+    
     console.log("step5")
         res.status(200).json({ msg: "Success" });
     }
@@ -303,13 +294,14 @@ const getAllItems = async (req, res) => {
 
 
 const selectProject = async (req, res) => {
+    console.log("uuuuiiiii")
    
     const pId = req.params.id;
     const project = await Project.findById(pId);
 
     const partner_email = req.params.email;
 
-    if (!req.params.email) {
+    if (!req.params.email || req.params.user===req.params.partner_email) {
         res.status(350).json({ "msg": "Please Select A Partner" })
     }
 

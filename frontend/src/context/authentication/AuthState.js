@@ -107,7 +107,7 @@ const AuthState = (props) => {
 
         const json=await response.json();
         setUser(json);
-        
+        return response.status;
     
         // console.log("useritem:- ",json)
         }
